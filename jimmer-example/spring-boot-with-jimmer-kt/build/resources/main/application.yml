@@ -1,0 +1,36 @@
+server:
+  port: 7788
+
+# 连接 pg
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/db_jimmer
+
+# Jimmer 配置
+jimmer:
+  # kotlin 语言需要指定
+  language: kotlin
+  # 显示 SQL 语句并自动美化
+  show-sql: true
+  pretty-sql: true
+  # 严格检查实体与数据库的映射关系，例如非空等，若映射不对直接报错
+  database-validation-mode: ERROR
+  # 数据库方言
+  dialect: org.babyfish.jimmer.sql.dialect.PostgresDialect
+  # jimmer 默认使用真外键，本项目使用假外键，此项设置为 false
+  is-foreign-key-enabled-by-default: false
+  # 客户端配置
+  client:
+    openapi:
+      path: /openapi.yml
+      ui-path: /openapi.html
+      properties:
+        info:
+          title: Spring Boot 3 with Jimmer Demo
+          description: 测试 测试一下
+          version: 1.0
+    ts:
+      path: /ts.zip

@@ -1,0 +1,10 @@
+package org.example.org.example.config
+
+/**
+ * @author jhlz
+ * @since 2024/4/16 10:11
+ * @version x.x.x
+ */
+class SqlClientConfig {
+
+}
