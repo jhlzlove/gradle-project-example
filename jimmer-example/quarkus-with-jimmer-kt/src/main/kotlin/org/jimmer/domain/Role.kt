@@ -5,22 +5,25 @@ import java.time.LocalDateTime
 
 /**
  * @author jhlz
- * @date 2024/2/29 14:41
- * @since x.x.x
+ * @since 2024/4/17 13:48
+ * @version x.x.x
  */
 @Entity
+@Table(name = "tb_role")
 interface Role {
-    @Id
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int
+    val roleId: Long
+
     val roleName: String
     val roleCode: String
-    val createBy: String?
-    val updateBy: String?
     val createTime: LocalDateTime?
     val updateTime: LocalDateTime?
+    val remark: String?
 
-    @ManyToMany(mappedBy = "roles")
-    val users :List<SysUser>
+    /**
+     * 状态0正常，1停用
+     */
+    val status: Int
 }

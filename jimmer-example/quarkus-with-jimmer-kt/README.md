@@ -1,77 +1,13 @@
 # quarkus-with-jimmer-kt
 
-本项目没有使用 Spring Boot，自然也不使用 jimmer 提供的 starter，所以一些配置需要自己定义，配置一个 Bean 即可。
+## 构建运行
 
-本项目使用 db2 数据库，电脑都会自带。
+创建名为 `quarkus_jimmer` 的数据库（如果名称不一样，则需要修改 `application.properties` 文件），执行 sql 文件夹下的脚本文件，然后启动项目进行测试。
 
-构建本机可执行文件 
+## 构建本机可执行文件
+
+如果对 GraalVM 感兴趣，可以尝试使用以下命令：
 
 ```bash
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=false
 ```
-
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-
-```shell script
-./gradlew quarkusDev
-```
-
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
-
-## Packaging and running the application
-
-The application can be packaged using:
-
-```shell script
-./gradlew build
-```
-
-It produces the `quarkus-run.jar` file in the `build/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/quarkus-app/lib/` directory.
-
-The application is now runnable using `java -jar build/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./gradlew build -Dquarkus.package.type=uber-jar
-```
-
-The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using:
-
-```shell script
-./gradlew build -Dquarkus.package.type=native
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./build/quarkus-with-jimmer-kt-1.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
-
-## Related Guides
-
-- JDBC Driver - DB2 ([guide](https://quarkus.io/guides/datasource)): Connect to the DB2 database via JDBC
-- Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
-
-## Provided Code
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
