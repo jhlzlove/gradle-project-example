@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
+// 启用 Jimmer 的客户端能力
 @EnableImplicitApi
 class JimmerExampleApplication
 

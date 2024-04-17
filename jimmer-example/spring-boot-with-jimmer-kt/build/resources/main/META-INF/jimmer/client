@@ -241,9 +241,9 @@
     "kind" : "ENUM",
     "doc" : { },
     "constants" : [ {
-      "name" : "MALE"
+      "name" : "男"
     }, {
-      "name" : "FEMALE"
+      "name" : "女"
     }, {
       "name" : "UNKNOWN"
     } ]

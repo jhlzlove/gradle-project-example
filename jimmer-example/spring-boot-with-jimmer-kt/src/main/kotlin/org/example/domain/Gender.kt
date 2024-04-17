@@ -13,8 +13,10 @@ import org.babyfish.jimmer.sql.EnumType
 // 这也是 jimmer 默认的映射方案
 @EnumType(EnumType.Strategy.NAME)
 enum class Gender {
-    MALE,
-    FEMALE,
+    @EnumItem(name = "MALE")
+    男,
+    @EnumItem(name = "FEMALE")
+    女,
     @EnumItem(name = "UN")
-    UNKNOWN
+    UNKNOWN,
 }

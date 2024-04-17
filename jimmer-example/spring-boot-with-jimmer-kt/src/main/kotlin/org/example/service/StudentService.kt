@@ -3,9 +3,8 @@ package org.example.org.example.service
 import org.babyfish.jimmer.Page
 import org.babyfish.jimmer.client.FetchBy
 import org.babyfish.jimmer.sql.kt.KSqlClient
-import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
+import org.example.org.example.Fetchers
 import org.example.org.example.domain.Student
-import org.example.org.example.domain.by
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -40,7 +39,7 @@ class StudentService @Autowired constructor(val sqlClient: KSqlClient) {
         return sqlClient.createQuery(Student::class) {
             select(
                 // 下面几行行可以转为这一行
-                table.fetch(STUDENT_FETCH)
+                table.fetch(Fetchers.STUDENT_FETCHER)
                 // table.fetchBy {
                 //     fullName()
                 //     gender()
@@ -53,40 +52,17 @@ class StudentService @Autowired constructor(val sqlClient: KSqlClient) {
     }
 
     /**
-     * 更新
-     */
-    fun updateStudent(student: Student): Student {
-        return sqlClient.save(student).modifiedEntity
-    }
-
-    /**
      * 删除
      */
-    fun deleteStudent(ids: List<Long>) : Int{
-        return sqlClient.deleteByIds(Student::class, ids).totalAffectedRowCount
+    fun deleteStudent(ids: List<Long>): Int {
+        return sqlClient.deleteByIds(Student::class, ids).affectedRowCount(Student::class)
     }
 
-    fun getAllStudentFetchBy(pageIndex: Int, pageSize: Int): Page<@FetchBy(
-        value = "STUDENT_FETCH"
-    ) Student> {
+    fun getAllStudentFetchBy(pageIndex: Int, pageSize: Int):
+            Page<@FetchBy(value = "STUDENT_FETCH") Student> {
         return sqlClient.createQuery(Student::class) {
-            select(table.fetch(STUDENT_FETCH))
+            select(table.fetch(Fetchers.STUDENT_FETCHER))
         }.fetchPage(pageIndex, pageSize)
     }
 
-    /**
-     * 定义自己需要的一个查询形状
-     */
-    companion object {
-        private val STUDENT_FETCH = newFetcher(Student::class).by {
-            fullName()
-            gender()
-            // 思考：这里为什么是 courseIds 呢？
-            // 废话，因为实体就是这样命名的，你问我为什么如此命名？？？
-            // 这就是测试的艺术了
-            courseIds {
-                courseName()
-            }
-        }
-    }
 }
