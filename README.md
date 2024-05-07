@@ -1,11 +1,15 @@
-# 说明
+# Overview
 
-Demo
+Gradle example
 
-## 环境依赖
+include：
+
+- jimmer-example
+
+## Use Tools
 
 - JDK 21+
-- Gradle 8.5+
+- Gradle 8.7+
 - Kotlin 1.9.22
 - [Jimmer](https://babyfish-ct.github.io/jimmer-doc/zh/) 0.8.125+
 - Spring Boot 3.x+
