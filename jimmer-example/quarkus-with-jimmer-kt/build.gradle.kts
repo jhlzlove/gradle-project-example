@@ -1,8 +1,8 @@
 plugins {
     java
     id("io.quarkus")
+    alias(libs.plugins.ksp)
     kotlin("jvm") version "1.9.22"
-    id("com.google.devtools.ksp") version "1.9.22-1.0.16"
 }
 
 group = "org.jimmer"
@@ -30,11 +30,10 @@ tasks.withType<JavaCompile> {
 val quarkusPlatformGroupId: String by project
 val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
-val jimmerVersion = "0.8.125"
 dependencies {
     // 应用jimmer的ksp代码生成器
-    ksp("org.babyfish.jimmer:jimmer-ksp:${jimmerVersion}")
-    implementation("org.babyfish.jimmer:jimmer-sql-kotlin:${jimmerVersion}")
+    ksp(libs.jimmer.ksp)
+    implementation(libs.jimmer.sql.kotlin)
 
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-rest")

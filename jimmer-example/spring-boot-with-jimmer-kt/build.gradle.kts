@@ -1,14 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 plugins {
-    id("org.springframework.boot") version "3.2.3"
-    id("io.spring.dependency-management") version "1.1.4"
+    java
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.boot.management)
+    alias(libs.plugins.ksp)
     kotlin("jvm") version "1.9.22"
     kotlin("plugin.spring") version "1.9.22"
-    id("com.google.devtools.ksp") version "1.9.22-1.0.16"
 }
 
-group = "org.example"
+group = "org.jimmer"
 version = "1.0-SNAPSHOT"
 
 java {
@@ -18,22 +20,19 @@ java {
 repositories {
     mavenCentral()
 }
-// 定义 Jimmer 相关版本号
-val jimmerVersion = "0.8.125"
+
 dependencies {
     // jimmer spring boot starter
-    implementation("org.babyfish.jimmer:jimmer-spring-boot-starter:${jimmerVersion}")
+    implementation(libs.jimmer.spring.boot)
     // ksp
-    ksp("org.babyfish.jimmer:jimmer-ksp:${jimmerVersion}")
-
+    ksp(libs.jimmer.ksp)
     // 数据库
-    runtimeOnly("org.postgresql:postgresql")
-
+    runtimeOnly(libs.postgresql)
     // Spring Boot
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation(libs.spring.boot)
+    implementation(libs.spring.boot.starter.web)
+    implementation(libs.kotlin.reflect)
+    testImplementation(libs.spring.boot.starter.test)
 }
 
 // 将生成的代码添加到编译路径中。
@@ -54,6 +53,7 @@ tasks.withType<KotlinCompile> {
 
 tasks.test {
     useJUnitPlatform()
+
 }
 
 kotlin {
