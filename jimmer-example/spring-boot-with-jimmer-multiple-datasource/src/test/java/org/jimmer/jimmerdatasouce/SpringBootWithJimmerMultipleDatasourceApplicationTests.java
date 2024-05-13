@@ -8,6 +8,10 @@ class SpringBootWithJimmerMultipleDatasourceApplicationTests {
 
     @Test
     void contextLoads() {
+        a(1, 2, 3, 4);
     }
 
+    void a(int... a) {
+
+    }
 }
