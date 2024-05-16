@@ -1,4 +1,4 @@
-package org.example.org.example.domain
+package org.jimmer.domain;
 
 import org.babyfish.jimmer.Formula
 import org.babyfish.jimmer.sql.*
@@ -11,7 +11,7 @@ import org.babyfish.jimmer.sql.*
  */
 @Entity
 @Table(name = "db_student")
-interface Student: BaseEntity {
+interface Student : BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

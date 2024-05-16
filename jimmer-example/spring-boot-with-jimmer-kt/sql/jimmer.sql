@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.2
 
--- Started on 2024-04-16 12:57:15
+-- Started on 2024-05-16 15:42:54
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -29,7 +29,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO pg_database_owner;
 
 --
--- TOC entry 4865 (class 0 OID 0)
+-- TOC entry 4891 (class 0 OID 0)
 -- Dependencies: 4
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
 --
@@ -40,6 +40,91 @@ COMMENT ON SCHEMA public IS 'standard public schema';
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- TOC entry 223 (class 1259 OID 17182)
+-- Name: category; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.category (
+    id bigint NOT NULL,
+    code character varying NOT NULL,
+    parent_id bigint,
+    name character varying NOT NULL,
+    create_time timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.category OWNER TO postgres;
+
+--
+-- TOC entry 4892 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: TABLE category; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.category IS '类型表';
+
+
+--
+-- TOC entry 4893 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: COLUMN category.code; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.category.code IS '编码';
+
+
+--
+-- TOC entry 4894 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: COLUMN category.parent_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.category.parent_id IS '父编码';
+
+
+--
+-- TOC entry 4895 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: COLUMN category.name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.category.name IS '名称';
+
+
+--
+-- TOC entry 4896 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: COLUMN category.create_time; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.category.create_time IS '创建时间';
+
+
+--
+-- TOC entry 222 (class 1259 OID 17181)
+-- Name: category_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.category_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.category_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4897 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.category_id_seq OWNED BY public.category.id;
+
 
 --
 -- TOC entry 218 (class 1259 OID 16539)
@@ -57,7 +142,7 @@ CREATE TABLE public.db_course (
 ALTER TABLE public.db_course OWNER TO postgres;
 
 --
--- TOC entry 4866 (class 0 OID 0)
+-- TOC entry 4898 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: COLUMN db_course.course_name; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -66,7 +151,7 @@ COMMENT ON COLUMN public.db_course.course_name IS '课程名称';
 
 
 --
--- TOC entry 4867 (class 0 OID 0)
+-- TOC entry 4899 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: COLUMN db_course.course_code; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -75,7 +160,7 @@ COMMENT ON COLUMN public.db_course.course_code IS '课程编码';
 
 
 --
--- TOC entry 4868 (class 0 OID 0)
+-- TOC entry 4900 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: COLUMN db_course.create_time; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -99,7 +184,7 @@ CREATE SEQUENCE public.db_course_course_id_seq
 ALTER SEQUENCE public.db_course_course_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4869 (class 0 OID 0)
+-- TOC entry 4901 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: db_course_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -121,7 +206,7 @@ CREATE TABLE public.db_stu_course (
 ALTER TABLE public.db_stu_course OWNER TO postgres;
 
 --
--- TOC entry 4870 (class 0 OID 0)
+-- TOC entry 4902 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: TABLE db_stu_course; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -130,7 +215,7 @@ COMMENT ON TABLE public.db_stu_course IS '学生课程关联表';
 
 
 --
--- TOC entry 4871 (class 0 OID 0)
+-- TOC entry 4903 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: COLUMN db_stu_course.course_id; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -139,7 +224,7 @@ COMMENT ON COLUMN public.db_stu_course.course_id IS '课程id';
 
 
 --
--- TOC entry 4872 (class 0 OID 0)
+-- TOC entry 4904 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: COLUMN db_stu_course.student_id; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -163,7 +248,7 @@ CREATE SEQUENCE public.db_stu_course_course_id_seq
 ALTER SEQUENCE public.db_stu_course_course_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4873 (class 0 OID 0)
+-- TOC entry 4905 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: db_stu_course_course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -187,7 +272,7 @@ CREATE SEQUENCE public.db_stu_course_student_id_seq
 ALTER SEQUENCE public.db_stu_course_student_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4874 (class 0 OID 0)
+-- TOC entry 4906 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: db_stu_course_student_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -216,7 +301,7 @@ CREATE TABLE public.db_student (
 ALTER TABLE public.db_student OWNER TO postgres;
 
 --
--- TOC entry 4875 (class 0 OID 0)
+-- TOC entry 4907 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.first_name; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -225,7 +310,7 @@ COMMENT ON COLUMN public.db_student.first_name IS '姓氏';
 
 
 --
--- TOC entry 4876 (class 0 OID 0)
+-- TOC entry 4908 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.last_name; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -234,7 +319,7 @@ COMMENT ON COLUMN public.db_student.last_name IS '名字';
 
 
 --
--- TOC entry 4877 (class 0 OID 0)
+-- TOC entry 4909 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.gender; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -243,7 +328,7 @@ COMMENT ON COLUMN public.db_student.gender IS '性别';
 
 
 --
--- TOC entry 4878 (class 0 OID 0)
+-- TOC entry 4910 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.create_time; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -252,7 +337,7 @@ COMMENT ON COLUMN public.db_student.create_time IS '创建时间';
 
 
 --
--- TOC entry 4879 (class 0 OID 0)
+-- TOC entry 4911 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.update_time; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -261,7 +346,7 @@ COMMENT ON COLUMN public.db_student.update_time IS '更新时间';
 
 
 --
--- TOC entry 4880 (class 0 OID 0)
+-- TOC entry 4912 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.create_by; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -270,7 +355,7 @@ COMMENT ON COLUMN public.db_student.create_by IS '创建人';
 
 
 --
--- TOC entry 4881 (class 0 OID 0)
+-- TOC entry 4913 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.update_by; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -279,7 +364,7 @@ COMMENT ON COLUMN public.db_student.update_by IS '更新人';
 
 
 --
--- TOC entry 4882 (class 0 OID 0)
+-- TOC entry 4914 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: COLUMN db_student.remark; Type: COMMENT; Schema: public; Owner: postgres
 --
@@ -303,7 +388,7 @@ CREATE SEQUENCE public.db_student_user_id_seq
 ALTER SEQUENCE public.db_student_user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4883 (class 0 OID 0)
+-- TOC entry 4915 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: db_student_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -312,7 +397,140 @@ ALTER SEQUENCE public.db_student_user_id_seq OWNED BY public.db_student.user_id;
 
 
 --
--- TOC entry 4702 (class 2604 OID 16542)
+-- TOC entry 225 (class 1259 OID 17198)
+-- Name: db_teacher; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.db_teacher (
+    teacher_id bigint NOT NULL,
+    teacher_name character varying NOT NULL,
+    teacher_code character varying NOT NULL,
+    remark character varying,
+    create_time timestamp with time zone
+);
+
+
+ALTER TABLE public.db_teacher OWNER TO postgres;
+
+--
+-- TOC entry 4916 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: TABLE db_teacher; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.db_teacher IS '教师表';
+
+
+--
+-- TOC entry 4917 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: COLUMN db_teacher.teacher_name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.db_teacher.teacher_name IS '姓名';
+
+
+--
+-- TOC entry 4918 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: COLUMN db_teacher.teacher_code; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.db_teacher.teacher_code IS '教师资格证编码';
+
+
+--
+-- TOC entry 4919 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: COLUMN db_teacher.remark; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.db_teacher.remark IS '备注';
+
+
+--
+-- TOC entry 4920 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: COLUMN db_teacher.create_time; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.db_teacher.create_time IS '入职时间';
+
+
+--
+-- TOC entry 226 (class 1259 OID 17206)
+-- Name: db_teacher_course; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.db_teacher_course (
+    teacher_id bigint NOT NULL,
+    course_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.db_teacher_course OWNER TO postgres;
+
+--
+-- TOC entry 4921 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: TABLE db_teacher_course; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.db_teacher_course IS '教师课程关联表';
+
+
+--
+-- TOC entry 4922 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: COLUMN db_teacher_course.teacher_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.db_teacher_course.teacher_id IS '教师id';
+
+
+--
+-- TOC entry 4923 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: COLUMN db_teacher_course.course_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.db_teacher_course.course_id IS '课程id';
+
+
+--
+-- TOC entry 224 (class 1259 OID 17197)
+-- Name: db_teacher_teacher_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.db_teacher_teacher_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.db_teacher_teacher_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 4924 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: db_teacher_teacher_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.db_teacher_teacher_id_seq OWNED BY public.db_teacher.teacher_id;
+
+
+--
+-- TOC entry 4720 (class 2604 OID 17185)
+-- Name: category id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.category ALTER COLUMN id SET DEFAULT nextval('public.category_id_seq'::regclass);
+
+
+--
+-- TOC entry 4716 (class 2604 OID 16542)
 -- Name: db_course course_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -320,7 +538,7 @@ ALTER TABLE ONLY public.db_course ALTER COLUMN course_id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4704 (class 2604 OID 16552)
+-- TOC entry 4718 (class 2604 OID 16552)
 -- Name: db_stu_course course_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -328,7 +546,7 @@ ALTER TABLE ONLY public.db_stu_course ALTER COLUMN course_id SET DEFAULT nextval
 
 
 --
--- TOC entry 4705 (class 2604 OID 16553)
+-- TOC entry 4719 (class 2604 OID 16553)
 -- Name: db_stu_course student_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -336,7 +554,7 @@ ALTER TABLE ONLY public.db_stu_course ALTER COLUMN student_id SET DEFAULT nextva
 
 
 --
--- TOC entry 4699 (class 2604 OID 16533)
+-- TOC entry 4713 (class 2604 OID 16533)
 -- Name: db_student user_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -344,49 +562,113 @@ ALTER TABLE ONLY public.db_student ALTER COLUMN user_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4856 (class 0 OID 16539)
+-- TOC entry 4722 (class 2604 OID 17201)
+-- Name: db_teacher teacher_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.db_teacher ALTER COLUMN teacher_id SET DEFAULT nextval('public.db_teacher_teacher_id_seq'::regclass);
+
+
+--
+-- TOC entry 4882 (class 0 OID 17182)
+-- Dependencies: 223
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.category (id, code, parent_id, name, create_time) FROM stdin;
+1	1715442885049	\N	商品	2024-05-11 23:54:45.0636
+2	1715443083927	\N	裙子	2024-05-11 23:58:03.940474
+3	1715443185114	2	连衣裙	2024-05-11 23:59:45.12717
+4	1715443208588	2	露肩裙	2024-05-12 00:00:08.590134
+5	1715443222724	3	粉色连衣裙	2024-05-12 00:00:22.72656
+6	1715443230984	3	青色连衣裙	2024-05-12 00:00:30.986247
+8	1715477202699	3	紫色连衣裙	2024-05-12 09:26:42.702663
+9	1715477300505	4	双露肩	2024-05-12 09:28:20.505936
+7	1715477147053	4	粉色单露肩	2024-05-12 09:25:47.068447
+\.
+
+
+--
+-- TOC entry 4877 (class 0 OID 16539)
 -- Dependencies: 218
 -- Data for Name: db_course; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.db_course (course_id, course_name, course_code, create_time) FROM stdin;
-1	语文	1713238748831	2024-04-16 11:39:08.842526
+16	剑术	6809e3043c5a463d926e2734df5c349a	2024-05-16 14:59:07.192746
+17	诗歌	f90b27f4e3e546de94fb737cfec6244a	2024-05-16 14:59:07.193662
+18	书法	662b28563725418c9ae565a55b3c04f3	2024-05-16 14:59:07.194204
+19	古文	cef78364b0224b0fb9f704ba737750db	2024-05-16 15:00:42.863816
 \.
 
 
 --
--- TOC entry 4859 (class 0 OID 16549)
+-- TOC entry 4880 (class 0 OID 16549)
 -- Dependencies: 221
 -- Data for Name: db_stu_course; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.db_stu_course (course_id, student_id) FROM stdin;
-1	1
 \.
 
 
 --
--- TOC entry 4854 (class 0 OID 16530)
+-- TOC entry 4875 (class 0 OID 16530)
 -- Dependencies: 216
 -- Data for Name: db_student; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.db_student (user_id, first_name, last_name, gender, create_time, update_time, create_by, update_by, remark) FROM stdin;
 1	楚	凛風	MALE	2024-04-16 10:53:48.145409	2024-04-16 10:53:48.145409	\N	\N	\N
+2	白	亦非	MALE	2024-04-16 12:58:37.936771	2024-04-16 12:58:37.936771	\N	\N	\N
 \.
 
 
 --
--- TOC entry 4884 (class 0 OID 0)
+-- TOC entry 4884 (class 0 OID 17198)
+-- Dependencies: 225
+-- Data for Name: db_teacher; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.db_teacher (teacher_id, teacher_name, teacher_code, remark, create_time) FROM stdin;
+7	李太白	litaibai	\N	2024-05-16 15:00:42.85701+08
+\.
+
+
+--
+-- TOC entry 4885 (class 0 OID 17206)
+-- Dependencies: 226
+-- Data for Name: db_teacher_course; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.db_teacher_course (teacher_id, course_id) FROM stdin;
+7	16
+7	17
+7	18
+7	19
+\.
+
+
+--
+-- TOC entry 4925 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.category_id_seq', 9, true);
+
+
+--
+-- TOC entry 4926 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: db_course_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.db_course_course_id_seq', 1, true);
+SELECT pg_catalog.setval('public.db_course_course_id_seq', 19, true);
 
 
 --
--- TOC entry 4885 (class 0 OID 0)
+-- TOC entry 4927 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: db_stu_course_course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -395,7 +677,7 @@ SELECT pg_catalog.setval('public.db_stu_course_course_id_seq', 1, false);
 
 
 --
--- TOC entry 4886 (class 0 OID 0)
+-- TOC entry 4928 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: db_stu_course_student_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -404,16 +686,34 @@ SELECT pg_catalog.setval('public.db_stu_course_student_id_seq', 1, false);
 
 
 --
--- TOC entry 4887 (class 0 OID 0)
+-- TOC entry 4929 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: db_student_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.db_student_user_id_seq', 1, true);
+SELECT pg_catalog.setval('public.db_student_user_id_seq', 2, true);
 
 
 --
--- TOC entry 4709 (class 2606 OID 16546)
+-- TOC entry 4930 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: db_teacher_teacher_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.db_teacher_teacher_id_seq', 7, true);
+
+
+--
+-- TOC entry 4728 (class 2606 OID 17190)
+-- Name: category category_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.category
+    ADD CONSTRAINT category_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4726 (class 2606 OID 16546)
 -- Name: db_course db_course_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -422,7 +722,7 @@ ALTER TABLE ONLY public.db_course
 
 
 --
--- TOC entry 4707 (class 2606 OID 16537)
+-- TOC entry 4724 (class 2606 OID 16537)
 -- Name: db_student db_student_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -430,7 +730,16 @@ ALTER TABLE ONLY public.db_student
     ADD CONSTRAINT db_student_pk PRIMARY KEY (user_id);
 
 
--- Completed on 2024-04-16 12:57:15
+--
+-- TOC entry 4730 (class 2606 OID 17205)
+-- Name: db_teacher db_teacher_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.db_teacher
+    ADD CONSTRAINT db_teacher_pk PRIMARY KEY (teacher_id);
+
+
+-- Completed on 2024-05-16 15:42:54
 
 --
 -- PostgreSQL database dump complete

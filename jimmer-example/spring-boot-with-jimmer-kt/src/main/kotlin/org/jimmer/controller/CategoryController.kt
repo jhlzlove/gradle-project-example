@@ -1,13 +1,13 @@
-package org.example.org.example.controller
+package org.jimmer.controller
 
 import org.babyfish.jimmer.kt.isLoaded
 import org.babyfish.jimmer.kt.new
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.babyfish.jimmer.sql.kt.ast.expression.isNull
-import org.example.org.example.domain.Category
-import org.example.org.example.domain.by
-import org.example.org.example.domain.fetchBy
-import org.example.org.example.domain.parentId
+import org.jimmer.domain.Category
+import org.jimmer.domain.by
+import org.jimmer.domain.fetchBy
+import org.jimmer.domain.parentId
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
 

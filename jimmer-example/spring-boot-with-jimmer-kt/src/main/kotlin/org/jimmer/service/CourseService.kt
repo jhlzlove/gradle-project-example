@@ -1,9 +1,9 @@
-package org.example.org.example.service
+package org.jimmer.service
 
 import org.babyfish.jimmer.kt.new
 import org.babyfish.jimmer.sql.kt.KSqlClient
-import org.example.org.example.domain.Course
-import org.example.org.example.domain.by
+import org.jimmer.domain.Course
+import org.jimmer.domain.by
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.time.Instant

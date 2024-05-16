@@ -1,10 +1,10 @@
-package org.example.org.example.service
+package org.jimmer.service
 
 import org.babyfish.jimmer.Page
 import org.babyfish.jimmer.client.FetchBy
 import org.babyfish.jimmer.sql.kt.KSqlClient
-import org.example.org.example.Fetchers
-import org.example.org.example.domain.Student
+import org.jimmer.Fetchers
+import org.jimmer.domain.Student
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 

@@ -1,4 +1,4 @@
-package org.example.org.example.domain
+package org.jimmer.domain
 
 import org.babyfish.jimmer.sql.*
 import java.time.LocalDateTime
@@ -17,6 +17,10 @@ interface Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val courseId: Long
 
+    /**
+     * 课程名称不能重复
+     */
+    @Key
     val courseName: String
 
     val courseCode: String
@@ -25,4 +29,7 @@ interface Course {
 
     @ManyToMany(mappedBy = "courseIds")
     val students: List<Student>
+
+    @ManyToMany(mappedBy = "courses")
+    val teachers: List<Teacher>
 }

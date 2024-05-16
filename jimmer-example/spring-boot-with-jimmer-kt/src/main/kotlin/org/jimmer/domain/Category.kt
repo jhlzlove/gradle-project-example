@@ -1,4 +1,4 @@
-package org.example.org.example.domain
+package org.jimmer.domain
 
 import org.babyfish.jimmer.sql.*
 import java.time.LocalDateTime

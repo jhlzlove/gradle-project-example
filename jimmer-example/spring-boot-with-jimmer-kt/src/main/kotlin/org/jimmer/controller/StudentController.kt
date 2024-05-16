@@ -1,11 +1,11 @@
-package org.example.org.example.controller
+package org.jimmer.controller
 
 import org.babyfish.jimmer.Page
 import org.babyfish.jimmer.client.FetchBy
 import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
-import org.example.org.example.domain.Student
-import org.example.org.example.domain.by
-import org.example.org.example.service.StudentService
+import org.jimmer.domain.Student
+import org.jimmer.domain.by
+import org.jimmer.service.StudentService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 

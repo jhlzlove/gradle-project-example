@@ -1,4 +1,4 @@
-package org.example.org.example.config
+package org.example.org.jimmer.config
 
 /**
  * @author jhlz

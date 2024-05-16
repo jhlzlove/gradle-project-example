@@ -1,7 +1,7 @@
-package org.example.org.example.controller
+package org.jimmer.controller
 
-import org.example.org.example.domain.Course
-import org.example.org.example.service.CourseService
+import org.jimmer.domain.Course
+import org.jimmer.service.CourseService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 

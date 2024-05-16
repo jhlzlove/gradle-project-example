@@ -1,8 +1,8 @@
-package org.example.org.example
+package org.jimmer
 
 import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
-import org.example.org.example.domain.Student
-import org.example.org.example.domain.by
+import org.jimmer.domain.Student
+import org.jimmer.domain.by
 
 /**
  * @author jhlz
