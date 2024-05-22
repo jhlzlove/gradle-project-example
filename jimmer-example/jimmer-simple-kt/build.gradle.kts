@@ -2,37 +2,26 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 plugins {
-    java
-    alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.boot.management)
     alias(libs.plugins.ksp)
     kotlin("jvm") version "1.9.23"
-    kotlin("plugin.spring") version "1.9.23"
 }
 
 group = "org.jimmer"
 version = "1.0-SNAPSHOT"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    // jimmer spring boot starter
-    implementation(libs.jimmer.spring.boot)
+    implementation("ch.qos.logback:logback-classic:1.5.6")
     // ksp
     ksp(libs.jimmer.ksp)
+    implementation(libs.jimmer.sql.kotlin)
     // 数据库
     runtimeOnly(libs.postgresql)
-    // Spring Boot
-    implementation(libs.spring.boot)
-    implementation(libs.spring.boot.starter.web)
     implementation(libs.kotlin.reflect)
-    testImplementation(libs.spring.boot.starter.test)
+    testImplementation(kotlin("test"))
 }
 
 // 将生成的代码添加到编译路径中。

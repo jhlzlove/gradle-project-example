@@ -6,12 +6,17 @@ include：
 
 - jimmer-example
 
+> [!IMPORTANT]
+> 除了 quarkus-with-jimmer-kt 外，其它 demo 都使用了 `db_jimmer` 数据库，SQL
+> 脚本在 `jimmer-example/spring-boot-with-jimmer-kt` 中；
+>
+
 ## Use Tools
 
 - JDK 21+
 - Gradle 8.7+
-- Kotlin 1.9.22
-- [Jimmer](https://babyfish-ct.github.io/jimmer-doc/zh/) 0.8.125+
+- Kotlin 1.9.23
+- [Jimmer](https://babyfish-ct.github.io/jimmer-doc/zh/) 0.8.130+
 - Spring Boot 3.x+
 - Postgresql 16.x+
 

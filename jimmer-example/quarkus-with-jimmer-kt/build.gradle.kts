@@ -2,7 +2,7 @@ plugins {
     java
     id("io.quarkus")
     alias(libs.plugins.ksp)
-    kotlin("jvm") version "1.9.22"
+    kotlin("jvm") version "1.9.23"
 }
 
 group = "org.jimmer"
@@ -65,9 +65,11 @@ kotlin {
  */
 project.afterEvaluate {
     getTasksByName("quarkusGenerateCode", true).forEach { task ->
-        task.setDependsOn(task.dependsOn.filterIsInstance<Provider<Task>>().filter { it.get().name != "processResources" })
+        task.setDependsOn(
+            task.dependsOn.filterIsInstance<Provider<Task>>().filter { it.get().name != "processResources" })
     }
     getTasksByName("quarkusGenerateCodeDev", true).forEach { task ->
-        task.setDependsOn(task.dependsOn.filterIsInstance<Provider<Task>>().filter { it.get().name != "processResources" })
+        task.setDependsOn(
+            task.dependsOn.filterIsInstance<Provider<Task>>().filter { it.get().name != "processResources" })
     }
 }
