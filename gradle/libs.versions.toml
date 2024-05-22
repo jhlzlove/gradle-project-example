@@ -1,15 +1,15 @@
 [versions]
-jimmer = "0.8.130"
+jimmer = "0.8.132"
 springBoot = "3.2.5"
 springBootManagement = "1.1.4"
-kspVersion = "1.9.22-1.0.16"
+kspVersion = "1.9.23-1.0.20"
 postgresql = "42.7.3"
 lombokVersion = "1.18.32"
-kotlinVersion = "1.9.22"
+kotlinVersion = "1.9.23"
 
 [libraries]
 # kotlin ksp
-jimmer-ksp = {group = "org.babyfish.jimmer", name = "jimmer-ksp", version.ref = "jimmer"}
+jimmer-ksp = { group = "org.babyfish.jimmer", name = "jimmer-ksp", version.ref = "jimmer" }
 # Java apt
 jimmer-apt = { group = "org.babyfish.jimmer", name = "jimmer-apt", version.ref = "jimmer" }
 jimmer-sql-kotlin = { group = "org.babyfish.jimmer", name = "jimmer-sql-kotlin", version.ref = "jimmer" }
@@ -21,14 +21,14 @@ spring-boot = { group = "org.springframework.boot", name = "spring-boot", versio
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "springBoot" }
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "springBoot" }
 
-kotlin-reflect = {group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinVersion"}
-lombok = {group = "org.projectlombok", name = "lombok", version.ref = "lombokVersion"}
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinVersion" }
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombokVersion" }
 
 # Postgresql
 postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
 [bundles]
 
 [plugins]
-spring-boot = {id = "org.springframework.boot", version.ref = "springBoot"}
-spring-boot-management = {id = "io.spring.dependency-management", version.ref = "springBootManagement"}
-ksp = {id = "com.google.devtools.ksp", version.ref = "kspVersion"}
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-boot-management = { id = "io.spring.dependency-management", version.ref = "springBootManagement" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
