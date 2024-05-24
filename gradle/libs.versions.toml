@@ -1,13 +1,16 @@
 [versions]
+# 使用依赖的版本定义
 jimmer = "0.8.132"
-springBoot = "3.2.5"
-springBootManagement = "1.1.4"
-kspVersion = "1.9.23-1.0.20"
+springBoot = "3.3.0"
+springBootManagement = "1.1.5"
+kspVersion = "2.0.0-1.0.21"
 postgresql = "42.7.3"
 lombokVersion = "1.18.32"
-kotlinVersion = "1.9.23"
+kotlinVersion = "2.0.0"
+kotlinJackson = "2.17.1"
 
 [libraries]
+# 使用的第三方 lib 包
 # kotlin ksp
 jimmer-ksp = { group = "org.babyfish.jimmer", name = "jimmer-ksp", version.ref = "jimmer" }
 # Java apt
@@ -22,13 +25,16 @@ spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-b
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "springBoot" }
 
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinVersion" }
+kotlin-jackson = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "kotlinJackson" }
 lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombokVersion" }
 
 # Postgresql
 postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
 [bundles]
+# 这里可以把使用的第三方 lib 包分组，在子模块中使用
 
 [plugins]
+# 使用的插件
 spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
 spring-boot-management = { id = "io.spring.dependency-management", version.ref = "springBootManagement" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
