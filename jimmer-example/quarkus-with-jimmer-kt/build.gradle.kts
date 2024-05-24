@@ -2,7 +2,7 @@ plugins {
     java
     id("io.quarkus")
     alias(libs.plugins.ksp)
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "1.9.24"
 }
 
 group = "org.jimmer"
@@ -39,7 +39,7 @@ dependencies {
     implementation("io.quarkus:quarkus-rest")
     implementation("io.quarkus:quarkus-rest-jackson")
     implementation("io.quarkus:quarkus-agroal")
-    implementation("io.quarkus:quarkus-narayana-jta:3.9.3")
+    implementation("io.quarkus:quarkus-narayana-jta")
     implementation("io.quarkus:quarkus-jdbc-postgresql")
     implementation("io.quarkus:quarkus-arc")
 

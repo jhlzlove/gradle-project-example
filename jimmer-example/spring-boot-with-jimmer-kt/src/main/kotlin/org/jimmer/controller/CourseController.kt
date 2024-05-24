@@ -2,7 +2,6 @@ package org.jimmer.controller
 
 import org.jimmer.domain.Course
 import org.jimmer.service.CourseService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*
  */
 @RestController
 @RequestMapping("/course")
-class CourseController @Autowired constructor(val courseService: CourseService) {
+class CourseController(val courseService: CourseService) {
 
     @GetMapping("/{id}")
     fun getCourseById(@PathVariable("id") courseId: Long): Course? = courseService.getCourseById(courseId)
@@ -24,5 +23,5 @@ class CourseController @Autowired constructor(val courseService: CourseService) 
     fun updateCourseById(@RequestBody course: Course) = courseService.addOrUpdateCourse(course)
 
     @DeleteMapping("/{id}")
-    fun deleteCourse(@PathVariable id: Long) : Int = courseService.deleteCourse(id)
+    fun deleteCourse(@PathVariable id: Long): Int = courseService.deleteCourse(id)
 }

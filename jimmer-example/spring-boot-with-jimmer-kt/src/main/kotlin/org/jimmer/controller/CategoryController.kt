@@ -17,39 +17,39 @@ import java.time.Instant
  */
 @RequestMapping("/category")
 @RestController
-class CategoryController constructor(
-     val sqlClient: KSqlClient
+class CategoryController(
+    val sqlClient: KSqlClient
 ) {
 
-     @PostMapping("/add")
-     fun save(@RequestBody category: Category) {
-          if (isLoaded(category, Category::id)) {
-               sqlClient.save(category)
-               return
-          }
+    @PostMapping("/add")
+    fun save(@RequestBody category: Category) {
+        if (isLoaded(category, Category::id)) {
+            sqlClient.save(category)
+            return
+        }
 
-          val target = new(Category::class).by {
-               name = category.name
-               code = Instant.now().toEpochMilli().toString()
-               // 传值就设置，没有就不设置
-               parentId = when (isLoaded(category, Category::parentId)) {
-                    true -> category.parentId
-                    false -> null
-               }
-          }
-          sqlClient.save(target)
-     }
+        val target = new(Category::class).by {
+            name = category.name
+            code = Instant.now().toEpochMilli().toString()
+            // 传值就设置，没有就不设置
+            parentId = when (isLoaded(category, Category::parentId)) {
+                true -> category.parentId
+                false -> null
+            }
+        }
+        sqlClient.save(target)
+    }
 
-     @GetMapping("/list")
-     fun categoryList(): List<Category> {
-          val list = sqlClient.createQuery(Category::class) {
-               where(table.parentId.isNull())
-               select(table.fetchBy {
-                    allScalarFields()
-                    // kotlin 的递归写法
-                    `childs*`()
-               })
-          }.execute()
-          return list
-     }
+    @GetMapping("/list")
+    fun categoryList(): List<Category> {
+        val list = sqlClient.createQuery(Category::class) {
+            where(table.parentId.isNull())
+            select(table.fetchBy {
+                allScalarFields()
+                // kotlin 的递归写法
+                `childs*`()
+            })
+        }.execute()
+        return list
+    }
 }

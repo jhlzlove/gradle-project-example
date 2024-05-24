@@ -6,7 +6,6 @@ import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
 import org.jimmer.domain.Student
 import org.jimmer.domain.by
 import org.jimmer.service.StudentService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*
  */
 @RestController
 @RequestMapping("/student")
-class StudentController @Autowired constructor(val studentService: StudentService) {
+class StudentController(val studentService: StudentService) {
 
     /**
      * 选课
@@ -39,8 +38,12 @@ class StudentController @Autowired constructor(val studentService: StudentServic
     /**
      * 分页获取
      */
-    @GetMapping("list")
-    fun getAllStudent(@RequestParam pageIndex: Int, @RequestParam pageSize: Int): Page<Student> {
+    @GetMapping("/list")
+    fun getAllStudent(
+        @RequestParam(defaultValue = "0") pageIndex: Int,
+        @RequestParam(defaultValue = "10") pageSize: Int
+    ): Page<Student> {
+        println("pageIndex = ${pageIndex}, pageSize = ${pageSize}")
         return studentService.getAllStudent(pageIndex, pageSize)
     }
 

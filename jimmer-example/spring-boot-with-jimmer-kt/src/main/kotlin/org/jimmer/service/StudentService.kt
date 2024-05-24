@@ -5,7 +5,6 @@ import org.babyfish.jimmer.client.FetchBy
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.jimmer.Fetchers
 import org.jimmer.domain.Student
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 /**
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Service
  * @version x.x.x
  */
 @Service
-class StudentService @Autowired constructor(val sqlClient: KSqlClient) {
+class StudentService constructor(val sqlClient: KSqlClient) {
 
     /**
      * 选课

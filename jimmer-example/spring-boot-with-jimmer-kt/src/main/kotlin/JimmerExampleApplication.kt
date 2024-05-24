@@ -1,4 +1,4 @@
-package org.example
+package org.jimmer
 
 import org.babyfish.jimmer.client.EnableImplicitApi
 import org.springframework.boot.autoconfigure.SpringBootApplication

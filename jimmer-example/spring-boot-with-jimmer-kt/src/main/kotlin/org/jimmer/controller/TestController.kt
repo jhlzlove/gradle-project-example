@@ -1,7 +1,7 @@
 package org.example.org.jimmer.controller
 
-import org.jimmer.service.StudentService
-import org.springframework.beans.factory.annotation.Autowired
+import org.babyfish.jimmer.sql.kt.KSqlClient
+import org.jimmer.domain.Student
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/test")
-class WebController @Autowired constructor(val studentService: StudentService) {
-
+class TestController(val sqlClient: KSqlClient) {
     @GetMapping("hello")
-    fun hello() = "Hello World"
+    fun hello() = sqlClient.findById(Student::class, 1)
+
+
 }

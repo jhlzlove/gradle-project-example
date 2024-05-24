@@ -6,8 +6,8 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.boot.management)
     alias(libs.plugins.ksp)
-    kotlin("jvm") version "1.9.23"
-    kotlin("plugin.spring") version "1.9.23"
+    kotlin("jvm") version "2.0.0"
+    kotlin("plugin.spring") version "2.0.0"
 }
 
 group = "org.jimmer"
@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.spring.boot)
     implementation(libs.spring.boot.starter.web)
     implementation(libs.kotlin.reflect)
+    implementation(libs.kotlin.jackson)
     testImplementation(libs.spring.boot.starter.test)
 }
 
@@ -53,7 +54,6 @@ tasks.withType<KotlinCompile> {
 
 tasks.test {
     useJUnitPlatform()
-
 }
 
 kotlin {

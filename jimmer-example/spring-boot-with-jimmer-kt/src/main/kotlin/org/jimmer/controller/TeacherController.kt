@@ -7,7 +7,6 @@ import org.jimmer.domain.addBy
 import org.jimmer.domain.by
 import org.jimmer.domain.dto.TeacherInput
 import org.jimmer.domain.dto.TeacherView
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime
 import java.util.*
@@ -18,7 +17,7 @@ import java.util.*
  */
 @RestController
 @RequestMapping("/teacher")
-class TeacherController @Autowired constructor(val sqlClient: KSqlClient) {
+class TeacherController(val sqlClient: KSqlClient) {
 
     /**
      * 由于教师编码使用了 @Key，倘若 编码 不变，修改了其它数据，那么保存会自动成为更新
@@ -57,7 +56,7 @@ class TeacherController @Autowired constructor(val sqlClient: KSqlClient) {
         return list
     }
 
-    @GetMapping("{id}")
+    @DeleteMapping("{id}")
     fun deleteTeacher(@PathVariable id: Long) {
         sqlClient.deleteById(Teacher::class, id)
     }

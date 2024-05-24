@@ -4,7 +4,6 @@ import org.babyfish.jimmer.kt.new
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.jimmer.domain.Course
 import org.jimmer.domain.by
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.time.Instant
 
@@ -15,7 +14,7 @@ import java.time.Instant
  * @version x.x.x
  */
 @Service
-class CourseService @Autowired constructor(val sqlClient: KSqlClient) {
+class CourseService constructor(val sqlClient: KSqlClient) {
 
     /**
      * 添加或更新
