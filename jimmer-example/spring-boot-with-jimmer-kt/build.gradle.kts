@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-
 plugins {
     java
     alias(libs.plugins.spring.boot)
@@ -14,7 +11,9 @@ group = "org.jimmer"
 version = "1.0-SNAPSHOT"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
@@ -22,15 +21,10 @@ repositories {
 }
 
 dependencies {
-    // jimmer spring boot starter
     implementation(libs.jimmer.spring.boot)
-    // ksp
     ksp(libs.jimmer.ksp)
-    // 数据库
     runtimeOnly(libs.postgresql)
-    // Spring Boot
-    implementation(libs.spring.boot)
-    implementation(libs.spring.boot.starter.web)
+    implementation(libs.bundles.spring.boot)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.jackson)
     testImplementation(libs.spring.boot.starter.test)
@@ -45,18 +39,13 @@ kotlin {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "21"
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict")
     }
 }
 
 tasks.test {
     useJUnitPlatform()
 }
-
-kotlin {
-    jvmToolchain(21)
-}
-

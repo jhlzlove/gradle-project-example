@@ -7,9 +7,11 @@ include：
 - jimmer-example
 
 > [!IMPORTANT]
-> 除了 quarkus-with-jimmer-kt 外，其它 demo 都使用了 `db_jimmer` 数据库，SQL
+> 除了 **quarkus-with-jimmer-kt** 外，其它 demo 都使用了 `db_jimmer` 数据库，SQL
 > 脚本在 `jimmer-example/spring-boot-with-jimmer-kt` 中；
 >
+> Jimmer 案例中使用了 dto 语言，所以第一次打开时会有报错。创建数据库并运行指定的脚本后，使用 Gradle 或者 IDEA 集成的 Gradle
+> 插件运行 build 命令，然后报错就会消失。
 
 ## Use Tools
 

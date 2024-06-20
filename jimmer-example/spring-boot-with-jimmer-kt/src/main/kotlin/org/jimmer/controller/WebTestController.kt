@@ -1,4 +1,4 @@
-package org.example.org.jimmer.controller
+package org.jimmer.controller
 
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.jimmer.domain.Student
@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RestController
  * @version x.x.x
  */
 @RestController
-@RequestMapping("/test")
-class TestController(val sqlClient: KSqlClient) {
-    @GetMapping("hello")
+@RequestMapping("/web")
+class WebTestController(val sqlClient: KSqlClient) {
+
+    @GetMapping("/hello")
     fun hello() = sqlClient.findById(Student::class, 1)
-
-
 }

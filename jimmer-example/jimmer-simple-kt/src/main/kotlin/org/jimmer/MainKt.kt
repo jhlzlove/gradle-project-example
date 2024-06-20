@@ -1,6 +1,7 @@
 package org.jimmer
 
 import org.jimmer.config.JimmerConfig
+import org.jimmer.domain.R
 import org.jimmer.domain.User
 
 /**
@@ -24,5 +25,7 @@ fun main() {
     val list = sqlClient.createQuery(User::class) {
         select(table)
     }.execute()
-    println(list)
+    println(R.ok())
+
+
 }

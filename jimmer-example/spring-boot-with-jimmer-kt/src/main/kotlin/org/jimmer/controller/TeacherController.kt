@@ -1,4 +1,4 @@
-package org.example.org.jimmer.controller
+package org.jimmer.controller
 
 import org.babyfish.jimmer.kt.new
 import org.babyfish.jimmer.sql.kt.KSqlClient
@@ -46,13 +46,14 @@ class TeacherController(val sqlClient: KSqlClient) {
         // sqlClient.save(target) {setAssociatedMode(TeacherProps.COURSES, AssociatedSaveMode.MERGE)}
     }
 
-    @GetMapping
+    @GetMapping("/list")
     fun getList(): List<TeacherView> {
         val list = sqlClient.createQuery(Teacher::class) {
             // 通过 http 返回客户端的 DTO 尽量使用 Fetcher
             // 这里使用 Output DTO 只是一个示例，可以达到和 Fetcher 一样的效果
             select(table.fetch(TeacherView::class))
         }.execute()
+        println(list)
         return list
     }
 
