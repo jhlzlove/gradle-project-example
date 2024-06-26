@@ -1,9 +1,5 @@
 # Overview
 
-Gradle example
-
-include：
-
 - jimmer-example
 
 > [!IMPORTANT]
@@ -15,12 +11,15 @@ include：
 
 ## Use Tools
 
-- JDK 21+
-- Gradle 8.7+
-- Kotlin 1.9.23
-- [Jimmer](https://babyfish-ct.github.io/jimmer-doc/zh/) 0.8.130+
-- Spring Boot 3.x+
-- Postgresql 16.x+
+| Tool Name                                              | Version |
+|--------------------------------------------------------|---------|
+| JDK                                                    | 21      |
+| [Gradle](https://gradle.org)                           | 8.8     |
+| [Kotlin](https://kotlinlang.org/)                      | 2.0     |
+| [Jimmer](https://babyfish-ct.github.io/jimmer-doc/zh/) | 0.8.134 |
+| [Spring Boot](https://spring.io/projects/spring-boot)  | 3.3.1   |
+| [Quarkus](https://quarkus.io/)                         | 3.10.2  |
+| [Postgresql](https://www.postgresql.org)               | 16.2+   |
 
 > [!CAUTION]
 > PG 的数据库不能为 user，这是内置关键字，建库时尽量避开关键字。让我看看是谁建表还用关键字 ~~好吧，看起来是我自己了~~。
