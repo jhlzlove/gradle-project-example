@@ -1,13 +1,14 @@
 [versions]
 # 使用依赖的版本定义
-jimmer = "0.8.132"
-springBoot = "3.3.0"
+jimmer = "0.8.134"
+springBoot = "3.3.1"
 springBootManagement = "1.1.5"
-kspVersion = "2.0.0-1.0.21"
 postgresql = "42.7.3"
-lombokVersion = "1.18.32"
 kotlinVersion = "2.0.0"
+kspVersion = "2.0.0-1.0.22"
 kotlinJackson = "2.17.1"
+logback = "1.5.6"
+lombokVersion = "1.18.32"
 
 [libraries]
 # 使用的第三方 lib 包
@@ -28,6 +29,7 @@ spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-star
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinVersion" }
 kotlin-jackson = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "kotlinJackson" }
 lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombokVersion" }
+logback-classic = {module = "ch.qos.logback:logback-classic", version.ref="logback"}
 
 # Postgresql
 postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }

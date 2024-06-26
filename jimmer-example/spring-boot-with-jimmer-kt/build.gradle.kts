@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.boot.management)
     alias(libs.plugins.ksp)
-    kotlin("jvm") version "2.0.0"
-    kotlin("plugin.spring") version "2.0.0"
+    kotlin("jvm") version libs.versions.kotlinVersion
+    kotlin("plugin.spring") version libs.versions.kotlinVersion
 }
 
 group = "org.jimmer"

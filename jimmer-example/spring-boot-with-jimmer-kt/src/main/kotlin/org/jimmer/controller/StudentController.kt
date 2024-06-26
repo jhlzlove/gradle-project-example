@@ -35,6 +35,11 @@ class StudentController(val studentService: StudentService) {
         studentService.addStudent(student)
     }
 
+    @DeleteMapping("/delete/{id}")
+    fun addStudent(@PathVariable id: Long) {
+        studentService.deleteStudent(listOf(id))
+    }
+
     /**
      * 分页获取
      */

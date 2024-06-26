@@ -2,7 +2,7 @@ plugins {
     java
     id("io.quarkus")
     alias(libs.plugins.ksp)
-    kotlin("jvm") version "1.9.24"
+    kotlin("jvm") version libs.versions.kotlinVersion
 }
 
 group = "org.jimmer"

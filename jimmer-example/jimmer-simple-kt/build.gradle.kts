@@ -1,9 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-
 plugins {
     alias(libs.plugins.ksp)
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version libs.versions.kotlinVersion
 }
 
 group = "org.jimmer"
@@ -14,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation("ch.qos.logback:logback-classic:1.5.6")
+    implementation(libs.logback.classic)
     // ksp
     ksp(libs.jimmer.ksp)
     implementation(libs.jimmer.sql.kotlin)
@@ -33,19 +30,21 @@ kotlin {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "21"
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict")
     }
 }
+
 
 tasks.test {
     useJUnitPlatform()
 
 }
 
-kotlin {
-    jvmToolchain(21)
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
