@@ -1,6 +1,6 @@
 plugins {
     java
-    id("io.quarkus")
+    alias(libs.plugins.quarkus)
     alias(libs.plugins.ksp)
     kotlin("jvm") version libs.versions.kotlinVersion
 }
@@ -27,27 +27,14 @@ tasks.withType<JavaCompile> {
     options.compilerArgs.add("-parameters")
 }
 
-val quarkusPlatformGroupId: String by project
-val quarkusPlatformArtifactId: String by project
-val quarkusPlatformVersion: String by project
 dependencies {
     // 应用jimmer的ksp代码生成器
     ksp(libs.jimmer.ksp)
     implementation(libs.jimmer.sql.kotlin)
 
-    implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-    implementation("io.quarkus:quarkus-rest")
-    implementation("io.quarkus:quarkus-rest-jackson")
-    implementation("io.quarkus:quarkus-agroal")
-    implementation("io.quarkus:quarkus-narayana-jta")
-    implementation("io.quarkus:quarkus-jdbc-postgresql")
-    implementation("io.quarkus:quarkus-arc")
-
-    implementation("io.quarkus:quarkus-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-    testImplementation("io.quarkus:quarkus-junit5")
-    testImplementation("io.rest-assured:rest-assured")
+    implementation(enforcedPlatform(libs.quarkus.platform))
+    implementation(libs.bundles.quarkus)
+    testImplementation(libs.bundles.quarkus.test)
 }
 
 // 将生成的代码添加到编译路径中。

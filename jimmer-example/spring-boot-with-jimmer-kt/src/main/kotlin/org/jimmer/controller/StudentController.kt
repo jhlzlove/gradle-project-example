@@ -2,9 +2,9 @@ package org.jimmer.controller
 
 import org.babyfish.jimmer.Page
 import org.babyfish.jimmer.client.FetchBy
-import org.babyfish.jimmer.sql.kt.fetcher.newFetcher
+import org.babyfish.jimmer.client.meta.DefaultFetcherOwner
+import org.jimmer.Fetchers
 import org.jimmer.domain.Student
-import org.jimmer.domain.by
 import org.jimmer.service.StudentService
 import org.springframework.web.bind.annotation.*
 
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*
  */
 @RestController
 @RequestMapping("/student")
+@DefaultFetcherOwner(Fetchers::class)
 class StudentController(val studentService: StudentService) {
 
     /**
@@ -60,17 +61,7 @@ class StudentController(val studentService: StudentService) {
     fun getAllStudentFetchBy(
         @RequestParam pageIndex: Int,
         @RequestParam pageSize: Int
-    ): Page<@FetchBy("STUDENT_FETCH") Student> {
+    ): Page<@FetchBy("STUDENT_FETCHER") Student> {
         return studentService.getAllStudentFetchBy(pageIndex, pageSize)
-    }
-
-    companion object {
-        private val STUDENT_FETCH = newFetcher(Student::class).by {
-            fullName()
-            gender()
-            courseIds {
-                courseName()
-            }
-        }
     }
 }

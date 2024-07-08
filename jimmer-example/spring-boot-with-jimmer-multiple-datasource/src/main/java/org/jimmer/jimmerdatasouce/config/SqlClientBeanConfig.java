@@ -19,12 +19,14 @@ import javax.sql.DataSource;
 @Configuration
 public class SqlClientBeanConfig {
 
-    @Autowired
-    @Qualifier("ds1")
-    DataSource ds1;
-    @Autowired
-    @Qualifier("ds2")
-    DataSource ds2;
+    final DataSource ds1;
+    final DataSource ds2;
+
+    public SqlClientBeanConfig(@Qualifier("ds1") DataSource ds1,
+                               @Qualifier("ds2") DataSource ds2) {
+        this.ds1 = ds1;
+        this.ds2 = ds2;
+    }
 
     @Bean
     public JSqlClient sq1() {
@@ -36,7 +38,6 @@ public class SqlClientBeanConfig {
                 .setSqlFormatter(SqlFormatter.PRETTY)
                 .setDatabaseValidationMode(DatabaseValidationMode.NONE)
                 .build();
-
     }
 
     @Bean

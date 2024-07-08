@@ -1,8 +1,9 @@
 # quarkus-with-jimmer-kt
 
-## 构建运行
+Quarkus 支持的注入方式和 Spring 是一样的。
 
-创建名为 `quarkus_jimmer` 的数据库（如果名称不一样，则需要修改 `application.properties` 文件），执行 sql 文件夹下的脚本文件，然后启动项目进行测试。
+> ![IMPORTANT]
+> 虽然本例子使用了 repository 层，但是由于来回切较为麻烦，直接注入 sqlClient 到 resource 层。哪怕不是例子，我们也要学会活学活用
 
 ## 构建本机可执行文件
 

@@ -1,14 +1,15 @@
 [versions]
 # 使用依赖的版本定义
-jimmer = "0.8.134"
+jimmer = "0.8.140"
 springBoot = "3.3.1"
 springBootManagement = "1.1.5"
 postgresql = "42.7.3"
-kotlinVersion = "2.0.0"
-kspVersion = "2.0.0-1.0.22"
+kotlinVersion = "2.0.20-Beta1"
+kspVersion = "2.0.20-Beta1-1.0.22"
 kotlinJackson = "2.17.1"
 logback = "1.5.6"
 lombokVersion = "1.18.32"
+quarkus = "3.12.1"
 
 [libraries]
 # 使用的第三方 lib 包
@@ -33,12 +34,46 @@ logback-classic = {module = "ch.qos.logback:logback-classic", version.ref="logba
 
 # Postgresql
 postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
+
+# Quarkus
+quarkus-platform = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkus"}
+quarkus-rest = { module = "io.quarkus:quarkus-rest", version.ref = "quarkus" }
+quarkus-rest-jackson = { module = "io.quarkus:quarkus-rest-jackson", version.ref = "quarkus" }
+quarkus-agroal = { module = "io.quarkus:quarkus-agroal", version.ref = "quarkus" }
+quarkus-narayana-jta = { module = "io.quarkus:quarkus-narayana-jta", version.ref = "quarkus" }
+quarkus-jdbc-postgresql = { module = "io.quarkus:quarkus-jdbc-postgresql", version.ref = "quarkus" }
+quarkus-arc = { module = "io.quarkus:quarkus-arc", version.ref = "quarkus" }
+quarkus-kotlin = { module = "io.quarkus:quarkus-kotlin", version.ref = "quarkus" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "quarkus" }
+quarkus-junit5 = { module = "io.quarkus:quarkus-junit5", version.ref = "quarkus" }
+rest-assured = { module = "io.rest-assured:rest-assured", version.ref = "quarkus" }
+
+
 [bundles]
 # 这里可以把使用的第三方 lib 包分组，一次引入多个依赖
-spring-boot = ["spring-boot", "spring-boot-starter-web"]
+spring-boot = [
+    "spring-boot",
+    "spring-boot-starter-web"
+]
+
+quarkus = [
+    "quarkus-rest",
+    "quarkus-rest-jackson",
+    "quarkus-agroal",
+    "quarkus-narayana-jta",
+    "quarkus-jdbc-postgresql",
+    "quarkus-arc",
+    "quarkus-kotlin",
+    "kotlin-stdlib-jdk8",
+]
+quarkus-test = [
+    "quarkus-junit5",
+    "rest-assured"
+]
 
 [plugins]
 # 使用的插件
 spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
 spring-boot-management = { id = "io.spring.dependency-management", version.ref = "springBootManagement" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+quarkus = { id = "io.quarkus" }

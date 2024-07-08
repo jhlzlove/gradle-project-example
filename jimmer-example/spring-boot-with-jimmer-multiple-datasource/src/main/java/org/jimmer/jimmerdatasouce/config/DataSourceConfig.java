@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Primary;
 
 /**
  * Spring 多数据源配置
+ * 使用 DataSourceProperties 主要是读取的配置项中的 url 字段，不使用 DataSourceProperties 默认读取的是 jdbcUrl
  * @author jhlz
  * @version x.x.x
  */
@@ -26,7 +27,6 @@ public class DataSourceConfig {
     @Primary
     @ConfigurationProperties("spring.datasource.ds1.hikari")
     public HikariDataSource ds1() {
-        System.out.println("ds1: " + dp1().getUrl());
         return dp1().initializeDataSourceBuilder().type(HikariDataSource.class).build();
     }
 
@@ -39,7 +39,6 @@ public class DataSourceConfig {
     @Bean
     @ConfigurationProperties("spring.datasource.ds2.hikari")
     public HikariDataSource ds2() {
-        System.out.println("ds2: " + dp2().getUrl());
         return dp2().initializeDataSourceBuilder().type(HikariDataSource.class).build();
     }
 }

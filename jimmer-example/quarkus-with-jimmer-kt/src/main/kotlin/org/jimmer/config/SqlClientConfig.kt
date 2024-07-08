@@ -2,13 +2,13 @@ package org.jimmer.config
 
 import io.agroal.api.AgroalDataSource
 import jakarta.enterprise.context.ApplicationScoped
-import jakarta.inject.Inject
 import jakarta.inject.Singleton
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.babyfish.jimmer.sql.kt.newKSqlClient
 import org.babyfish.jimmer.sql.runtime.DatabaseValidationMode
 import org.babyfish.jimmer.sql.runtime.Executor
 import org.babyfish.jimmer.sql.runtime.SqlFormatter
+import org.jimmer.interceptor.AuditInterceptor
 
 /**
  * sqlClient 配置，最重要是配置 ConnectionManager
@@ -20,7 +20,10 @@ import org.babyfish.jimmer.sql.runtime.SqlFormatter
  * @version x.x.x
  */
 @ApplicationScoped
-class SqlClientConfig @Inject constructor(val dataSource: AgroalDataSource) {
+class SqlClientConfig(
+    private val dataSource: AgroalDataSource,
+    private val auditInterceptor: AuditInterceptor,
+) {
 
     /**
      * 自定义项目中 sqlClient
@@ -37,7 +40,11 @@ class SqlClientConfig @Inject constructor(val dataSource: AgroalDataSource) {
         // sql 语句输出
         setExecutor(Executor.log())
         setSqlFormatter(SqlFormatter.PRETTY)
-        // 验证实体与数据库的关联关系
+        // 全部使用伪外键
+        setForeignKeyEnabledByDefault(false)
+        // 添加拦截器
+        addDraftInterceptor(auditInterceptor)
+        // 验证实体与数据库的关联关系，有错误直接报错 阻止程序运行
         setDatabaseValidationMode(DatabaseValidationMode.ERROR)
     }
 
