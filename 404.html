@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.15" />
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+
+      html.dark {
+        --c-bg: #22272e;
+      }
+
+      html,
+      body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme')
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      if (userMode === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (userMode === 'dark' || systemDarkMode) {
+        document.documentElement.classList.toggle('dark', true)
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <title>Gradle Project Example</title><meta name="description" content="Gradle 管理的项目案例">
+    <link rel="preload" href="/gradle-project-example/assets/style-DnUhLBIx.css" as="style"><link rel="stylesheet" href="/gradle-project-example/assets/style-DnUhLBIx.css">
+    <link rel="modulepreload" href="/gradle-project-example/assets/app-QA1OZ4Gg.js"><link rel="modulepreload" href="/gradle-project-example/assets/404.html-DN8NGfvj.js">
+    <link rel="prefetch" href="/gradle-project-example/assets/index.html-CpW3eox1.js" as="script"><link rel="prefetch" href="/gradle-project-example/assets/quickstart.html-DICF7mZx.js" as="script"><link rel="prefetch" href="/gradle-project-example/assets/vuepress-write-ext.html-B9s4t8r2.js" as="script"><link rel="prefetch" href="/gradle-project-example/assets/index.html-BAaV67xQ.js" as="script"><link rel="prefetch" href="/gradle-project-example/assets/index.html-DbcjFqP7.js" as="script"><link rel="prefetch" href="/gradle-project-example/assets/Jimmer.html-DziJPwHH.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container" data-v-303656ba><main class="page" data-v-303656ba><div class="theme-default-content" data-v-303656ba><h1 data-v-303656ba>404</h1><blockquote data-v-303656ba>How did we get here?</blockquote><a class="route-link" href="/gradle-project-example/" data-v-303656ba>Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/gradle-project-example/assets/app-QA1OZ4Gg.js" defer></script>
+  </body>
+</html>
