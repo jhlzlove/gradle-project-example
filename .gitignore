@@ -2,4 +2,10 @@
 **/build/**
 .idea
 .kotlin
-.gradle/**
+.gradle
+node_modules
+package-lock.json
+
+# vuepress
+docs/.vuepress/.cache
+docs/.vuepress/.temp

@@ -4,6 +4,7 @@ include(":spring-boot-with-jimmer-kt")
 include(":quarkus-with-jimmer-kt")
 include(":spring-boot-with-jimmer-multiple-datasource")
 include(":jimmer-simple-kt")
+include(":base-code")
 
 project(":spring-boot-with-jimmer-multiple-datasource").projectDir =
     File("jimmer-example/spring-boot-with-jimmer-multiple-datasource")

@@ -1,15 +1,16 @@
 [versions]
 # 使用依赖的版本定义
-jimmer = "0.8.140"
-springBoot = "3.3.1"
-springBootManagement = "1.1.5"
+jimmer = "0.8.155"
+springBoot = "3.3.2"
+springBootManagement = "1.1.6"
 postgresql = "42.7.3"
-kotlinVersion = "2.0.20-Beta1"
-kspVersion = "2.0.20-Beta1-1.0.22"
-kotlinJackson = "2.17.1"
+kotlinVersion = "2.0.10"
+kspVersion = "2.0.10-1.0.24"
+kotlinJackson = "2.17.2"
 logback = "1.5.6"
-lombokVersion = "1.18.32"
-quarkus = "3.12.1"
+lombokVersion = "1.18.34"
+quarkus = "3.13.2"
+jmh = "1.37"
 
 [libraries]
 # 使用的第三方 lib 包
@@ -48,7 +49,9 @@ kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", versi
 quarkus-junit5 = { module = "io.quarkus:quarkus-junit5", version.ref = "quarkus" }
 rest-assured = { module = "io.rest-assured:rest-assured", version.ref = "quarkus" }
 
-
+# jmh
+jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh"}
+jmh-generator-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh"}
 [bundles]
 # 这里可以把使用的第三方 lib 包分组，一次引入多个依赖
 spring-boot = [
@@ -69,6 +72,11 @@ quarkus = [
 quarkus-test = [
     "quarkus-junit5",
     "rest-assured"
+]
+
+jmh = [
+    "jmh-core",
+    "jmh-generator-annprocess",
 ]
 
 [plugins]
