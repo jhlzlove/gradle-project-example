@@ -2,7 +2,7 @@ plugins {
     java
     alias(libs.plugins.quarkus)
     alias(libs.plugins.ksp)
-    kotlin("jvm") version libs.versions.kotlinVersion
+    alias(libs.plugins.kotlin.jvm)
 }
 
 group = "org.jimmer"
@@ -14,8 +14,9 @@ repositories {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_23
-    targetCompatibility = JavaVersion.VERSION_23
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 tasks.withType<Test> {

@@ -63,7 +63,7 @@ export default defineUserConfig({
                 text: "jimmer-example",
                 prefix: "/jimmer-example/",
                 children: [
-                    "Jimmer",
+                    "jimmer",
                 ],
             },
         ]

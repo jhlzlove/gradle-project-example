@@ -18,15 +18,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE db_jimmer;
---
--- TOC entry 4899 (class 1262 OID 16436)
--- Name: db_jimmer; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE db_jimmer WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Chinese (Simplified)_China.936';
-
-
 ALTER DATABASE db_jimmer OWNER TO postgres;
 
 \connect db_jimmer

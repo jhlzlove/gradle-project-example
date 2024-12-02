@@ -1,10 +1,16 @@
 plugins {
     alias(libs.plugins.ksp)
-    kotlin("jvm") version libs.versions.kotlinVersion
+    alias(libs.plugins.kotlin.jvm)
 }
 
 group = "org.jimmer"
 version = "1.0-SNAPSHOT"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     mavenCentral()
@@ -18,7 +24,6 @@ dependencies {
     // 数据库
     runtimeOnly(libs.postgresql)
     implementation(libs.kotlin.reflect)
-    testImplementation(kotlin("test"))
 }
 
 // 将生成的代码添加到编译路径中。
@@ -33,18 +38,6 @@ kotlin {
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
-    }
-}
-
-
-tasks.test {
-    useJUnitPlatform()
-
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 

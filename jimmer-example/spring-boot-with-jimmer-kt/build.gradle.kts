@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.boot.management)
     alias(libs.plugins.ksp)
-    kotlin("jvm") version libs.versions.kotlinVersion
-    kotlin("plugin.spring") version libs.versions.kotlinVersion
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.plugin.spring)
 }
 
 group = "org.jimmer"
@@ -12,7 +12,7 @@ version = "1.0-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
