@@ -1,7 +1,7 @@
 [versions]
 # 使用依赖的版本定义
-jimmer = "0.9.23"
-springBoot = "3.4.0"
+jimmer = "0.9.37"
+springBoot = "3.4.1"
 springBootManagement = "1.1.6"
 postgresql = "42.7.4"
 kotlinVersion = "2.1.0"
@@ -9,7 +9,7 @@ kspVersion = "2.1.0-1.0.29"
 kotlinJackson = "2.18.2"
 logback = "1.5.12"
 lombokVersion = "1.18.36"
-quarkus = "3.15.1"
+quarkus = "3.15.2"
 jmh = "1.37"
 
 [libraries]

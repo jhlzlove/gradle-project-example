@@ -27,11 +27,15 @@ interface Teacher {
 
     val createTime: LocalDateTime?
 
+    @LogicalDeleted("1")
+    @Column(name = "is_delete")
+    val delete: Int
+
     @ManyToMany
     @JoinTable(
         name = "db_teacher_course",
         joinColumnName = "teacher_id",
-        inverseJoinColumnName = "course_id"
+        inverseJoinColumnName = "course_id",
     )
     val  courses : List<Course>
 }

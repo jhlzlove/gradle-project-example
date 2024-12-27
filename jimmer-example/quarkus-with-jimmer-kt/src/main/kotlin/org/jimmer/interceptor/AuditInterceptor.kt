@@ -26,8 +26,8 @@ class AuditInterceptor : DraftInterceptor<BaseEntity, BaseEntityDraft> {
                 draft.createTime = LocalDateTime.now()
             }
 
-            if (!isLoaded(draft, BaseEntity::updateTime)) {
-                draft.updateTime = LocalDateTime.now()
+            if (!isLoaded(draft, BaseEntity::createBy)) {
+                draft.createBy = "111"
             }
         }
     }

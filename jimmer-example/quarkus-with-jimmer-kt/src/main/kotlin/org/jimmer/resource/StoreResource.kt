@@ -6,7 +6,6 @@ import jakarta.ws.rs.core.Response
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.jimmer.domain.Store
 import org.jimmer.domain.fetchBy
-import org.jimmer.repository.StoreRepository
 
 /**
  * @author jhlz
@@ -14,7 +13,6 @@ import org.jimmer.repository.StoreRepository
  */
 @Path("/store")
 class StoreResource(
-    private val storeRepository: StoreRepository,
     private val sqlClient: KSqlClient
 ) {
 
@@ -44,13 +42,9 @@ class StoreResource(
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun addOrUpdate(store: Store): Response = Response.ok(storeRepository.add(store)).build()
+    fun addOrUpdate(store: Store) = sqlClient.save(store)
 
     @DELETE
     @Path("/{id}")
-    fun deleteById(@PathParam("id") id: Long): Response {
-        return Response.ok(
-            sqlClient.deleteById(Store::class, id)
-        ).build()
-    }
+    fun deleteById(@PathParam("id") id: Long) = sqlClient.deleteById(Store::class, id)
 }

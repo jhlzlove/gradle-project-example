@@ -17,7 +17,7 @@ class Fetchers {
         val STUDENT_FETCHER = newFetcher(Student::class).by {
             fullName()
             gender()
-            courseIds {
+            courses {
                 courseName()
             }
         }

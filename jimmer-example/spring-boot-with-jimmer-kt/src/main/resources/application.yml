@@ -1,7 +1,7 @@
 server:
   port: 7788
 
-# 连接 pg
+# pg
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -17,7 +17,7 @@ jimmer:
   show-sql: true
   pretty-sql: true
   # 严格检查实体与数据库的映射关系，例如非空等，若映射不对直接报错
-  database-validation-mode: ERROR
+  database-validation-mode: error
   # 数据库方言
   dialect: org.babyfish.jimmer.sql.dialect.PostgresDialect
   # jimmer 默认使用真外键，本项目使用假外键，此项设置为 false

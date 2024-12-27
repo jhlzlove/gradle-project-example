@@ -7,7 +7,6 @@ import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.babyfish.jimmer.sql.kt.ast.expression.eq
 import org.jimmer.domain.Author
 import org.jimmer.domain.id
-import org.jimmer.repository.AuthorRepository
 
 /**
  * @author jhlz
@@ -15,7 +14,6 @@ import org.jimmer.repository.AuthorRepository
  */
 @Path("/author")
 class AuthorResource(
-    private val authorRepository: AuthorRepository,
     private val sqlClient: KSqlClient
 ) {
     /**
@@ -50,7 +48,7 @@ class AuthorResource(
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    fun addOrUpdate(author: Author): Response = Response.ok(authorRepository.addOrUpdate(author)).build()
+    fun addOrUpdate(author: Author) = sqlClient.save(author).isRowAffected
 
     /**
      * 删除

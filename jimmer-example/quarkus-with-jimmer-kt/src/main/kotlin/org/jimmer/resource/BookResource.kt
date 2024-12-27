@@ -7,7 +7,6 @@ import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.babyfish.jimmer.sql.kt.ast.expression.eq
 import org.jimmer.domain.Book
 import org.jimmer.domain.id
-import org.jimmer.repository.BookRepository
 
 /**
  * @author jhlz
@@ -15,7 +14,6 @@ import org.jimmer.repository.BookRepository
  */
 @Path("/book")
 class BookResource(
-    private val bookRepository: BookRepository,
     private val sqlClient: KSqlClient
 ) {
 
@@ -46,13 +44,10 @@ class BookResource(
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun addOrUpdate(book: Book) = Response.ok(bookRepository.add(book)).build()
+    fun addOrUpdate(book: Book) = sqlClient.save(book)
 
     @DELETE
     @Path("/{id}")
-    fun delete(@PathParam("id") id: Long): Response {
-        return Response.ok(
-            sqlClient.deleteById(Book::class, id)
-        ).build()
-    }
+    fun delete(@PathParam("id") id: Long) =  sqlClient.deleteById(Book::class, id)
+
 }

@@ -30,7 +30,8 @@ interface Student : BaseEntity {
     val fullName: String get() = "$firstName$lastName"
 
     @LogicalDeleted("1")
-    val isDelete: Int
+    @Column(name = "is_delete")
+    val delete: Int
 
     @ManyToMany
     @JoinTable(
@@ -40,7 +41,7 @@ interface Student : BaseEntity {
         // 若中间表也有逻辑删除字段，则修改这里
         // logicalDeletedFilter = JoinTable.LogicalDeletedFilter(columnName = "is_delete", type = Int::class, value = "1", initializedValue = "0"),
         // 开启此项，若逻辑删除实体具有中间表，则被逻辑删除实体相关的中间表记录会被物理删除。
-        deletedWhenEndpointIsLogicallyDeleted = true
+        // deletedWhenEndpointIsLogicallyDeleted = true
     )
-    val courseIds: List<Course>
+    val courses: List<Course>
 }

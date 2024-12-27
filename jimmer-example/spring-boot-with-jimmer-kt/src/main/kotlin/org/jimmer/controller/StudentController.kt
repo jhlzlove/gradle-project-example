@@ -25,43 +25,17 @@ class StudentController(val studentService: StudentService) {
     fun takeCourse(
         @PathVariable("studentId") studentId: Long,
         @PathVariable("courseId") courseId: Long
-    ) =
-        studentService.takeCourse(studentId, courseId)
+    ) = studentService.takeCourse(studentId, courseId)
 
     /**
-     * 添加
-     */
-    @PostMapping("/add")
-    fun addStudent(@RequestBody student: Student) {
-        studentService.addStudent(student)
-    }
-
-    @DeleteMapping("/delete/{id}")
-    fun addStudent(@PathVariable id: Long) {
-        studentService.deleteStudent(listOf(id))
-    }
-
-    /**
-     * 分页获取
-     */
-    @GetMapping("/list")
-    fun getAllStudent(
-        @RequestParam(defaultValue = "0") pageIndex: Int,
-        @RequestParam(defaultValue = "10") pageSize: Int
-    ): Page<Student> {
-        println("pageIndex = ${pageIndex}, pageSize = ${pageSize}")
-        return studentService.getAllStudent(pageIndex, pageSize)
-    }
-
-    /**
-     * 分页获取，使用另一种写法，结果和上面一致
+     * 分页获取，使用另一种写法
      * 不同之处在于，这种写法将会生成对应的客户端代码，结构和后端定义代码一致供前端小伙伴使用
      */
-    @GetMapping("/fetchBy")
-    fun getAllStudentFetchBy(
+    @GetMapping("/page")
+    fun page(
         @RequestParam pageIndex: Int,
         @RequestParam pageSize: Int
     ): Page<@FetchBy("STUDENT_FETCHER") Student> {
-        return studentService.getAllStudentFetchBy(pageIndex, pageSize)
+        return studentService.page(pageIndex, pageSize)
     }
 }

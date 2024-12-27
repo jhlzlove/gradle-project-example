@@ -1,11 +1,12 @@
 package org.jimmer.service
 
+import org.babyfish.jimmer.kt.isLoaded
 import org.babyfish.jimmer.kt.new
 import org.babyfish.jimmer.sql.kt.KSqlClient
 import org.jimmer.domain.Course
 import org.jimmer.domain.by
 import org.springframework.stereotype.Service
-import java.time.Instant
+import java.util.*
 
 /**
  * 课程服务类
@@ -14,30 +15,32 @@ import java.time.Instant
  * @version x.x.x
  */
 @Service
-class CourseService constructor(val sqlClient: KSqlClient) {
+class CourseService(val sqlClient: KSqlClient) {
 
     /**
      * 添加或更新
      */
-    fun addOrUpdateCourse(course: Course): Course {
-        sqlClient.findById(Course::class, course.courseId)?.let {
-            return sqlClient.save(course).originalEntity
+    fun addOrUpdateCourse(course: Course): Boolean {
+        return when(isLoaded(course, Course::courseId)) {
+            true -> sqlClient.save(course).isRowAffected
+            false -> {
+                val target = new(Course::class).by {
+                    courseCode = UUID.randomUUID().toString().replace("-", "")
+                    courseName = course.courseName
+                }
+                sqlClient.save(target).isRowAffected
+            }
         }
-        val target = new(Course::class).by {
-            courseCode = Instant.now().toEpochMilli().toString()
-            courseName = course.courseName
-        }
-        return sqlClient.save(target).originalEntity
     }
 
-    fun getCourseById(id: Long): Course? {
+    fun getInfo(id: Long): Course? {
         return sqlClient.findById(Course::class, id)
     }
 
     /**
      * 删除
      */
-    fun deleteCourse(id: Long): Int {
+    fun delete(id: Long): Int {
         return sqlClient.deleteById(Course::class, id).totalAffectedRowCount
     }
 }

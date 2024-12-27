@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 class CourseController(val courseService: CourseService) {
 
     @GetMapping("/{id}")
-    fun getCourseById(@PathVariable("id") courseId: Long): Course? = courseService.getCourseById(courseId)
+    fun info(@PathVariable("id") courseId: Long): Course? = courseService.getInfo(courseId)
 
     @PostMapping("/add")
     fun addCourse(@RequestBody course: Course) = courseService.addOrUpdateCourse(course)
@@ -23,5 +23,5 @@ class CourseController(val courseService: CourseService) {
     fun updateCourseById(@RequestBody course: Course) = courseService.addOrUpdateCourse(course)
 
     @DeleteMapping("/{id}")
-    fun deleteCourse(@PathVariable id: Long): Int = courseService.deleteCourse(id)
+    fun delete(@PathVariable id: Long): Int = courseService.delete(id)
 }

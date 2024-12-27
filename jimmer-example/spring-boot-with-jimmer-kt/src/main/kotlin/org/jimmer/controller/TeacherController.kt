@@ -1,15 +1,8 @@
 package org.jimmer.controller
 
-import org.babyfish.jimmer.kt.new
-import org.babyfish.jimmer.sql.kt.KSqlClient
-import org.jimmer.domain.Teacher
-import org.jimmer.domain.addBy
-import org.jimmer.domain.by
 import org.jimmer.domain.dto.TeacherInput
-import org.jimmer.domain.dto.TeacherView
+import org.jimmer.service.TeacherService
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDateTime
-import java.util.*
 
 /**
  * @author jhlz
@@ -17,7 +10,10 @@ import java.util.*
  */
 @RestController
 @RequestMapping("/teacher")
-class TeacherController(val sqlClient: KSqlClient) {
+class TeacherController(val teacherService: TeacherService) {
+
+    @GetMapping("/page")
+    fun page() = teacherService.page()
 
     /**
      * 由于教师编码使用了 @Key，倘若 编码 不变，修改了其它数据，那么保存会自动成为更新
@@ -27,38 +23,5 @@ class TeacherController(val sqlClient: KSqlClient) {
      * https://babyfish-ct.github.io/jimmer-doc/zh/docs/mutation/save-command/associated-save-mode
      */
     @PostMapping("/add")
-    fun add(@RequestBody teacher: TeacherInput) {
-        val target = new(Teacher::class).by {
-            teacherCode = teacher.teacherCode
-            teacherName = teacher.teacherName
-            createTime = LocalDateTime.now()
-
-            teacher.courses.forEach {
-                courses().addBy {
-                    courseName = it.courseName
-                    courseCode = UUID.randomUUID().toString().replace("-", "")
-                }
-            }
-        }
-        sqlClient.save(target)
-        // 由于本示例中 Course 实体使用 @Key 修饰了 courseName，Jimmer 会自动检查数据库是否有重复的 courseName
-        // 如果有，则不执行任何操作，没有就添加
-        // sqlClient.save(target) {setAssociatedMode(TeacherProps.COURSES, AssociatedSaveMode.MERGE)}
-    }
-
-    @GetMapping("/list")
-    fun getList(): List<TeacherView> {
-        val list = sqlClient.createQuery(Teacher::class) {
-            // 通过 http 返回客户端的 DTO 尽量使用 Fetcher
-            // 这里使用 Output DTO 只是一个示例，可以达到和 Fetcher 一样的效果
-            select(table.fetch(TeacherView::class))
-        }.execute()
-        println(list)
-        return list
-    }
-
-    @DeleteMapping("{id}")
-    fun deleteTeacher(@PathVariable id: Long) {
-        sqlClient.deleteById(Teacher::class, id)
-    }
+    fun add(@RequestBody teacher: TeacherInput) = teacherService.add(teacher)
 }

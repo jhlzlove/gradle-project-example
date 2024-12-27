@@ -27,9 +27,25 @@ interface Course {
 
     val createTime: LocalDateTime?
 
-    @ManyToMany(mappedBy = "courseIds")
+    @LogicalDeleted("1")
+    @Column(name = "is_delete")
+    val delete: Int
+
+    /**
+     * 与学生的关系
+     */
+    @ManyToMany(mappedBy = "courses")
     val students: List<Student>
 
+    /**
+     * 与老师的关系
+     */
     @ManyToMany(mappedBy = "courses")
     val teachers: List<Teacher>
+
+    /**
+     * 与专业的关联
+     */
+    @ManyToMany(mappedBy = "courses")
+    val subjects: List<Subject>
 }
