@@ -11,6 +11,14 @@ public class JDKTest {
 
     /**
      * example:
+     **/
+    @Test
+    public void _111_Test() {
+
+    }
+
+    /**
+     * example:
      */
     @Test
     public void my_Test() {
