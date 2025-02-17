@@ -6,19 +6,18 @@ import org.jimmer.domain.by
 
 /**
  * @author jhlz
- * @since 2024/4/16 19:27
  * @version x.x.x
  */
-class Fetchers {
-    /**
-     * 定义自己需要的一个查询形状
-     */
+class StudentFetchers {
+
     companion object {
-        val STUDENT_FETCHER = newFetcher(Student::class).by {
-            fullName()
-            gender()
+        val STUDENT_INFO = newFetcher(Student::class).by {
+            allScalarFields()
             courses {
                 courseName()
+            }
+            college {
+                collegeName()
             }
         }
     }

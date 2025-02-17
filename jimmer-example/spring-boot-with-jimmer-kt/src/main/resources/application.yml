@@ -20,8 +20,6 @@ jimmer:
   database-validation-mode: error
   # 数据库方言
   dialect: org.babyfish.jimmer.sql.dialect.PostgresDialect
-  # jimmer 默认使用真外键，本项目使用假外键，此项设置为 false
-  is-foreign-key-enabled-by-default: false
   # 客户端配置
   client:
     openapi:

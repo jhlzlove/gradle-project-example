@@ -1,9 +1,7 @@
 package org.jimmer.jimmerdatasouce.domain;
 
 import org.babyfish.jimmer.sql.*;
-import org.jetbrains.annotations.Nullable;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -20,14 +18,12 @@ public interface Course  {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long courseId();
+    long id();
 
+    @Key
     String courseName();
 
     String courseCode();
-
-    @Nullable
-    LocalDateTime createTime();
 
     /**
      * 多对多关系映射 从动方

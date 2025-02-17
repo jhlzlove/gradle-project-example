@@ -2,8 +2,6 @@ package org.jimmer.jimmerdatasouce.controller;
 
 import org.babyfish.jimmer.sql.JSqlClient;
 import org.jimmer.jimmerdatasouce.domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
+ * 多数据源测试
+ *
  * @author jhlz
  * @version x.x.x
  */
@@ -26,30 +26,37 @@ public class WebController {
     }
 
     @Transactional("tm1")
-    @GetMapping("/student")
-    public void getStudent() {
+    @GetMapping("/list")
+    public List<Student> getStudent() {
         StudentTable table = StudentTable.$;
-        List<Student> list = sq1.createQuery(table)
+        return sq1.createQuery(table)
                 .select(table.fetch(
                         StudentFetcher.$
                                 .allScalarFields()
                                 .fullName()
-                                .courses()
+                                .courses(
+                                        CourseFetcher.$
+                                                .courseName()
+                                )
+                                .college(
+                                        CollegeFetcher.$
+                                                .collegeName()
+                                )
                 ))
                 .execute();
-        list.forEach(System.out::println);
     }
 
-
-    @GetMapping("/dept")
+    @GetMapping("/author")
     @Transactional("tm2")
     public void getDept() {
-        DeptTable table = DeptTable.$;
-        List<Dept> list = sq2.createQuery(table)
-                .select(table.fetch(
-                        DeptFetcher.$
-                                .allScalarFields()
-                ))
+        AuthorTable table = AuthorTable.$;
+        List<Author> list = sq2.createQuery(table)
+                .select(
+                        table.fetch(
+                                AuthorFetcher.$
+                                        .allScalarFields()
+                        )
+                )
                 .execute();
         list.forEach(System.out::println);
     }

@@ -2,7 +2,9 @@ package org.jimmer.jimmerdatasouce.domain;
 
 import org.babyfish.jimmer.Formula;
 import org.babyfish.jimmer.sql.*;
+import org.jetbrains.annotations.Nullable;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -11,24 +13,33 @@ import java.util.List;
  */
 @Entity
 @Table(name = "db_student")
-public interface Student extends BaseEntity {
+public interface Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long userId();
+    long id();
 
+    @Key
     String firstName();
 
+    @Key
     String lastName();
 
+    @IdView
+    @Nullable
+    Long collegeId();
+
     Gender gender();
+
+    @Nullable
+    LocalDateTime birthday();
 
     /**
      * 简单计算属性，获取全名
      */
     @Formula(dependencies = {"firstName", "lastName"})
     default String fullName() {
-        return firstName() + "" + lastName();
+        return firstName() + lastName();
     }
 
     /**
@@ -40,8 +51,12 @@ public interface Student extends BaseEntity {
     @ManyToMany
     @JoinTable(
             name = "db_stu_course",
-            joinColumns = {@JoinColumn(name = "student_id", foreignKeyType = ForeignKeyType.FAKE)},
-            inverseJoinColumns = {@JoinColumn(name = "course_id", foreignKeyType = ForeignKeyType.FAKE)}
+            joinColumns = {@JoinColumn(name = "stu_id")},
+            inverseJoinColumns = {@JoinColumn(name = "course_id")}
     )
     List<Course> courses();
+
+    @ManyToOne
+    @Nullable
+    College college();
 }

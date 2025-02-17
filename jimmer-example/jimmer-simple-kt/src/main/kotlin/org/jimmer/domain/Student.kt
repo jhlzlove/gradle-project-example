@@ -24,10 +24,9 @@ interface Student {
     @Key
     val lastName: String
 
-    @IdView
     val collegeId: Long?
 
-    val gender: Gender
+    val gender: String
 
     /**
      * 简单计算属性，获取全名
@@ -40,19 +39,4 @@ interface Student {
     @LogicalDeleted("1")
     @Column(name = "is_delete")
     val delete: Int
-
-    @ManyToMany
-    @JoinTable(
-        name = "db_stu_course",
-        joinColumnName = "stu_id",
-        inverseJoinColumnName = "course_id",
-        // 若中间表也有逻辑删除字段，则修改这里
-        // logicalDeletedFilter = JoinTable.LogicalDeletedFilter(columnName = "is_delete", type = Int::class, value = "1", initializedValue = "0"),
-        // 开启此项，若逻辑删除实体具有中间表，则被逻辑删除实体相关的中间表记录会被物理删除。
-        // deletedWhenEndpointIsLogicallyDeleted = true
-    )
-    val courses: List<Course>
-
-    @ManyToOne
-    val college: College?
 }

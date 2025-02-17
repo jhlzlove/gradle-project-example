@@ -1,7 +1,6 @@
 package org.jimmer.domain
 
 import org.babyfish.jimmer.sql.*
-import java.time.LocalDateTime
 
 /**
  * 课程信息
@@ -15,7 +14,7 @@ interface Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val courseId: Long
+    val id: Long
 
     /**
      * 课程名称不能重复
@@ -25,27 +24,9 @@ interface Course {
 
     val courseCode: String
 
-    val createTime: LocalDateTime?
-
-    @LogicalDeleted("1")
-    @Column(name = "is_delete")
-    val delete: Int
-
     /**
      * 与学生的关系
      */
     @ManyToMany(mappedBy = "courses")
     val students: List<Student>
-
-    /**
-     * 与老师的关系
-     */
-    @ManyToMany(mappedBy = "courses")
-    val teachers: List<Teacher>
-
-    /**
-     * 与专业的关联
-     */
-    @ManyToMany(mappedBy = "courses")
-    val subjects: List<Subject>
 }

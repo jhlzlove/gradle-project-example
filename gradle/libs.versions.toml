@@ -1,6 +1,6 @@
 [versions]
 # 使用依赖的版本定义
-jimmer = "0.9.37"
+jimmer = "0.9.50"
 springBoot = "3.4.1"
 springBootManagement = "1.1.6"
 postgresql = "42.7.4"

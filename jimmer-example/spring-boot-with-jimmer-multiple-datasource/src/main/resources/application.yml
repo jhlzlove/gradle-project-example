@@ -6,27 +6,15 @@ spring:
       url: jdbc:postgresql://localhost:5432/db_jimmer?currentSchema=public&serverTimezone=Asia/Shanghai
       username: postgres
       password: postgres
-#      hikari:
-#        auto-commit: true
-#        idle-timeout: 60000
-#        connection-timeout: 60000
-#        maximum-pool-size: 10
     ds2:
       type: com.zaxxer.hikari.HikariDataSource
       driver-class-name: org.postgresql.Driver
       url: jdbc:postgresql://localhost:5432/db_quarkus?currentSchema=public&serverTimezone=Asia/Shanghai
       username: postgres
       password: postgres
-#      hikari:
-#        auto-commit: true
-#        idle-timeout: 60000
-#        connection-timeout: 60000
-#        maximum-pool-size: 10
 
 
-#jimmer:
-#  dialect: org.babyfish.jimmer.sql.dialect.PostgresDialect
-#  show-sql: true
-#  pretty-sql: true
-#  database-validation:
-#    mode: error
+jimmer:
+ dialect: org.babyfish.jimmer.sql.dialect.PostgresDialect
+ show-sql: true
+ pretty-sql: true

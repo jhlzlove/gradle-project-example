@@ -2,9 +2,9 @@ package org.jimmer
 
 import org.babyfish.jimmer.kt.new
 import org.jimmer.config.JimmerConfig
-import org.jimmer.domain.User
+import org.jimmer.domain.Student
 import org.jimmer.domain.by
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 /**
  * @author jhlz
@@ -15,16 +15,16 @@ class MainKt
 fun main() {
     val sqlClient = JimmerConfig.sqlClient()
 
-    val user = new(User::class).by {
-        username = "江湖浪子"
+    val user = new(Student::class).by {
+        firstName = "白"
+        lastName = "亦非"
         gender = "MALE"
-        address = "地球"
-        birthday = LocalDate.parse("2000-10-01")
+        birthday = LocalDateTime.now()
     }
 
     sqlClient.save(user)
 
-    val list = sqlClient.createQuery(User::class) {
+    val list = sqlClient.createQuery(Student::class) {
         select(table)
     }.execute()
 
