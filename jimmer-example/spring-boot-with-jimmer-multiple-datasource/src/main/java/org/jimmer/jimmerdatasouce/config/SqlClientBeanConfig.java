@@ -5,18 +5,19 @@ import org.babyfish.jimmer.sql.runtime.ConnectionManager;
 import org.babyfish.jimmer.sql.runtime.DatabaseValidationMode;
 import org.babyfish.jimmer.sql.runtime.Executor;
 import org.babyfish.jimmer.sql.runtime.SqlFormatter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
 /**
+ * 这个是一般行为，具体多数据源的配置参照
+ *
+ * @see SqlClientConfig
  * @author jhlz
  * @version x.x.x
  */
-@Configuration
+// @Configuration
 public class SqlClientBeanConfig {
 
     final DataSource ds1;

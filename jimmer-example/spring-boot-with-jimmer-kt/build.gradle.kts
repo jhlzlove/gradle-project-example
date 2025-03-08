@@ -1,7 +1,7 @@
 plugins {
     java
-    alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.boot.management)
+    alias(libs.plugins.sb)
+    alias(libs.plugins.sbm)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.plugin.spring)
@@ -25,8 +25,7 @@ dependencies {
     ksp(libs.jimmer.ksp)
     runtimeOnly(libs.postgresql)
     implementation(libs.bundles.spring.boot)
-    implementation(libs.kotlin.reflect)
-    implementation(libs.kotlin.jackson)
+    implementation(libs.bundles.kotlin.libs)
     testImplementation(libs.spring.boot.starter.test)
 }
 

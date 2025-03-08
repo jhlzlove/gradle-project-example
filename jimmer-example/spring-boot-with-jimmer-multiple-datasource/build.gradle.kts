@@ -1,7 +1,7 @@
 plugins {
     java
-    alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.boot.management)
+    alias(libs.plugins.sb)
+    alias(libs.plugins.sbm)
 }
 
 group = "org.jimmer"
@@ -24,8 +24,8 @@ repositories {
 }
 dependencies {
     annotationProcessor(libs.jimmer.apt)
-    implementation(libs.jimmer.spring.boot)
-    implementation(libs.spring.boot.starter.web)
+    implementation(libs.bundles.spring.boot)
+    implementation(libs.kotlin.stdlib.jdk8)
     compileOnly(libs.lombok)
     runtimeOnly(libs.postgresql)
     testImplementation(libs.spring.boot.starter.test)

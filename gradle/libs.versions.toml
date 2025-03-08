@@ -1,42 +1,46 @@
 [versions]
-# 使用依赖的版本定义
-jimmer = "0.9.50"
-springBoot = "3.4.1"
-springBootManagement = "1.1.6"
-postgresql = "42.7.4"
-kotlinVersion = "2.1.0"
-kspVersion = "2.1.0-1.0.29"
-kotlinJackson = "2.18.2"
-logback = "1.5.12"
-lombokVersion = "1.18.36"
+jimmer = "0.9.60"
+# spring boot
+sb = "3.4.3"
+sbm = "1.1.7"
+# kotlin
+kotlin = "2.1.10"
+ksp = "2.1.10-1.0.31"
+
+# pg
+postgresql = "42.7.5"
+
+logback = "1.5.17"
+lombok = "1.18.36"
 quarkus = "3.15.2"
+jackson = "2.18.3"
+
 jmh = "1.37"
 
 [libraries]
-# 使用的第三方 lib 包
-# ksp
-jimmer-ksp = { group = "org.babyfish.jimmer", name = "jimmer-ksp", version.ref = "jimmer" }
-# Java apt
-jimmer-apt = { group = "org.babyfish.jimmer", name = "jimmer-apt", version.ref = "jimmer" }
+####################################### jimmer #######################################
 # Jimmer sql for kotlin
-jimmer-sql-kotlin = { group = "org.babyfish.jimmer", name = "jimmer-sql-kotlin", version.ref = "jimmer" }
-# Jimmer Spring Boot Starter
+jimmer-sql-kotlin = { module = "org.babyfish.jimmer:jimmer-sql-kotlin", version.ref = "jimmer" }
+# jimmer ksp
+jimmer-ksp = { module = "org.babyfish.jimmer:jimmer-ksp", version.ref = "jimmer" }
+jimmer-sql = { module = "org.babyfish.jimmer:jimmer-sql", version.ref = "jimmer" }
+# jimmer apt
+jimmer-apt = { module = "org.babyfish.jimmer:jimmer-apt", version.ref = "jimmer" }
+# jimmer starter
 jimmer-spring-boot = { module = "org.babyfish.jimmer:jimmer-spring-boot-starter", version.ref = "jimmer" }
 
-# Spring Boot
-spring-boot = { module = "org.springframework.boot:spring-boot", version.ref = "springBoot" }
-spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
+####################################### kotlin #######################################
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 
-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinVersion" }
-kotlin-jackson = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "kotlinJackson" }
-lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombokVersion" }
-logback-classic = {module = "ch.qos.logback:logback-classic", version.ref="logback"}
+####################################### spring boot #######################################
+spring-boot = { module = "org.springframework.boot:spring-boot", version.ref = "sb" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "sb" }
+spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "sb" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "sb" }
 
-# Postgresql
-postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
-
-# Quarkus
+####################################### quarkus #######################################
 quarkus-platform = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkus"}
 quarkus-rest = { module = "io.quarkus:quarkus-rest", version.ref = "quarkus" }
 quarkus-rest-jackson = { module = "io.quarkus:quarkus-rest-jackson", version.ref = "quarkus" }
@@ -45,18 +49,63 @@ quarkus-narayana-jta = { module = "io.quarkus:quarkus-narayana-jta", version.ref
 quarkus-jdbc-postgresql = { module = "io.quarkus:quarkus-jdbc-postgresql", version.ref = "quarkus" }
 quarkus-arc = { module = "io.quarkus:quarkus-arc", version.ref = "quarkus" }
 quarkus-kotlin = { module = "io.quarkus:quarkus-kotlin", version.ref = "quarkus" }
-kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "quarkus" }
 quarkus-junit5 = { module = "io.quarkus:quarkus-junit5", version.ref = "quarkus" }
 rest-assured = { module = "io.rest-assured:rest-assured", version.ref = "quarkus" }
 
+####################################### micronaut #######################################
+micronaut-http-validation = { module = "io.micronaut:micronaut-http-validation" }
+micronaut-serde-processor = { module = "io.micronaut.serde:micronaut-serde-processor" }
+micronaut-kotlin-runtime = { module = "io.micronaut.kotlin:micronaut-kotlin-runtime" }
+micronaut-serde-jackson = { module = "io.micronaut.serde:micronaut-serde-jackson" }
+micronaut-http-client = { module = "io.micronaut:micronaut-http-client" }
+
+####################################### database #######################################
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+
+####################################### jackson #######################################
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson" }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+# java8 日期支持
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+
+####################################### other #######################################
+# lombok
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+# logback
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 # jmh
-jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh"}
-jmh-generator-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh"}
+jmh-core = { module = "org.openjdk.jmh:jmh-core", version.ref = "jmh" }
+jmh-generator-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess", version.ref = "jmh" }
+
 [bundles]
-# 这里可以把使用的第三方 lib 包分组，一次引入多个依赖
+
+kotlin-libs =[
+    "kotlin-reflect",
+    "kotlin-stdlib-jdk8",
+]
 spring-boot = [
     "spring-boot",
-    "spring-boot-starter-web"
+    "spring-boot-starter-web",
+    "spring-boot-starter-data-redis",
+]
+
+micronaut-ksp = [
+    "micronaut-http-validation",
+    "micronaut-serde-processor",
+]
+micronaut = [
+    "micronaut-kotlin-runtime",
+    "micronaut-serde-jackson",
+    "kotlin-reflect",
+    "kotlin-stdlib-jdk8",
+]
+micronaut-compile = [
+    "micronaut-http-client",
+]
+micronaut-runtime = [
+    "logback-classic",
+    "jackson-module-kotlin",
 ]
 
 quarkus = [
@@ -79,11 +128,28 @@ jmh = [
     "jmh-generator-annprocess",
 ]
 
+jackson = [
+    "jackson-core",
+    "jackson-annotations",
+    "jackson-databind",
+    "jackson-datatype-jsr310",
+]
+
 [plugins]
-# 使用的插件
-spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
-spring-boot-management = { id = "io.spring.dependency-management", version.ref = "springBootManagement" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+####################################### kotlin #######################################
+kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-plugin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+####################################### spring boot #######################################
+sb = { id = "org.springframework.boot", version.ref = "sb" }
+sbm = { id = "io.spring.dependency-management", version.ref = "sbm" }
+
+####################################### quarkus #######################################
 quarkus = { id = "io.quarkus" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
-kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlinVersion" }
+
+####################################### micronaut #######################################
+shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
+micronaut-application = { id = "io.micronaut.application", version = "4.4.4" }
+micronaut-aot = { id = "io.micronaut.aot", version = "4.4.4" }

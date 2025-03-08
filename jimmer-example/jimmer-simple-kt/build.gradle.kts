@@ -14,13 +14,11 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.logback.classic)
-    // ksp
     ksp(libs.jimmer.ksp)
     implementation(libs.jimmer.sql.kotlin)
-    // 数据库
-    runtimeOnly(libs.postgresql)
+    implementation(libs.logback.classic)
     implementation(libs.kotlin.reflect)
+    runtimeOnly(libs.postgresql)
 }
 
 kotlin {

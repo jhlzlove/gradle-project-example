@@ -17,19 +17,21 @@ import java.util.List;
 @RestController
 public class WebController {
 
-    final JSqlClient sq1;
-    final JSqlClient sq2;
+    final JSqlClient sqlClient;
 
-    public WebController(JSqlClient sq1, JSqlClient sq2) {
-        this.sq1 = sq1;
-        this.sq2 = sq2;
+    public WebController(JSqlClient sqlClient) {
+        this.sqlClient = sqlClient;
     }
 
     @Transactional("tm1")
     @GetMapping("/list")
     public List<Student> getStudent() {
         StudentTable table = StudentTable.$;
-        return sq1.createQuery(table)
+
+        Student student = sqlClient.findById(Student.class, 5);
+        System.out.println(student);
+
+        return sqlClient.createQuery(table)
                 .select(table.fetch(
                         StudentFetcher.$
                                 .allScalarFields()
@@ -50,7 +52,7 @@ public class WebController {
     @Transactional("tm2")
     public void getDept() {
         AuthorTable table = AuthorTable.$;
-        List<Author> list = sq2.createQuery(table)
+        List<Author> list = sqlClient.createQuery(table)
                 .select(
                         table.fetch(
                                 AuthorFetcher.$
