@@ -3,6 +3,7 @@
 .idea
 .kotlin
 .gradle
+.tool-versions
 node_modules
 package-lock.json
 

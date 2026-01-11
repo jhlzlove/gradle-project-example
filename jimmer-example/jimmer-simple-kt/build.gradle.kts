@@ -3,15 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-repositories {
-    mavenCentral()
-}
+group = "org.jimmer"
+version = "0.1"
 
 dependencies {
     ksp(libs.jimmer.ksp)
@@ -26,4 +19,3 @@ kotlin {
         freeCompilerArgs.addAll("-Xjsr305=strict")
     }
 }
-

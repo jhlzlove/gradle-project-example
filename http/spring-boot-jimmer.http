@@ -1,0 +1,80 @@
+### 添加商品
+POST {{base-url}}/product/add
+Content-Type: application/json
+
+[
+  {
+    "name": "数码",
+    "products": [
+      {
+        "proName": "手机",
+        "code": "1001",
+        "stockNum": 100,
+        "price": "100000.98"
+      },
+      {
+        "proName": "电脑",
+        "code": "1002",
+        "stockNum": 1000,
+        "price": "1273678.998"
+      }
+    ]
+  },
+  {
+    "name": "衣服",
+    "products": [
+      {
+        "proName": "外套",
+        "code": "1103",
+        "stockNum": 100,
+        "price": "100.5"
+      },
+      {
+        "proName": "连衣裙",
+        "code": "1104",
+        "stockNum": 1000,
+        "price": "200.00"
+      }
+    ]
+  }
+]
+
+
+### 商品列表
+GET {{base-url}}/product/page?page=1&size=10
+Accept: application/json
+
+### 添加用户
+POST {{base-url}}/person/save
+Content-Type: application/json
+
+{
+  "username": "Columbina",
+  "address": "moon night"
+}
+
+### 用户列表
+GET {{base-url}}/person/page?page=1&size=10
+Accept: application/json
+
+### 购买商品
+POST {{base-url}}/person/order
+Content-Type: application/json
+
+{
+  "id": 1,
+  "products": [
+    {
+      "productId": 1,
+      "num": 1
+    },
+    {
+      "productId": 2,
+      "num": 1
+    }
+  ]
+}
+
+### 查询用户订单
+GET {{base-url}}/person/order/1
+Accept: application/json

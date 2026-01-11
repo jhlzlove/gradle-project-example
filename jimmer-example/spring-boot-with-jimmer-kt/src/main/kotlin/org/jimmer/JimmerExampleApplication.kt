@@ -10,7 +10,8 @@ import org.springframework.boot.runApplication
 class JimmerExampleApplication
 
 fun main(args: Array<String>) {
-    runApplication<JimmerExampleApplication>(*args)
-    println("http://localhost:7788/openapi.html")
+    val context = runApplication<JimmerExampleApplication>(*args)
+    val env = context.environment
+    val port = env.getProperty("server.port")
+    println("http://localhost:${port}/openapi.html")
 }
-

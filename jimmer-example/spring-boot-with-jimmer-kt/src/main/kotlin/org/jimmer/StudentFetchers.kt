@@ -13,11 +13,9 @@ class StudentFetchers {
     companion object {
         val STUDENT_INFO = newFetcher(Student::class).by {
             allScalarFields()
+            fullName()
             courses {
                 courseName()
-            }
-            college {
-                collegeName()
             }
         }
     }

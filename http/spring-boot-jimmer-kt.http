@@ -1,0 +1,40 @@
+### 添加学生考试信息
+POST {{base-url}}/student
+Content-Type: application/json
+
+{
+  "firstName": "赵",
+  "lastName": "灵儿",
+  "age": 16,
+  "gender": "GIRL",
+  "courses": [
+    {
+      "courseName": "语文",
+      "score": "99"
+    }
+  ]
+}
+
+### 更新学生考试信息
+PUT {{base-url}}/student
+Content-Type: application/json
+
+{
+  "id": 2,
+  "firstName": "李",
+  "lastName": "逍遥",
+  "gender": "BOY",
+  "age": "18"
+}
+
+### 获取学生列表
+GET {{base-url}}/student/list
+Accept: application/json
+
+### 分页获取学生列表
+GET {{base-url}}/student/page
+Accept: application/json
+
+### 删除后再请求学生列表
+DELETE {{base-url}}/student/6
+Accept: application/json

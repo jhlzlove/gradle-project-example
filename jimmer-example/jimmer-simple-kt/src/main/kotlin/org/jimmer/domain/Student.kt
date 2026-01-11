@@ -11,7 +11,6 @@ import java.time.LocalDateTime
  * @version x.x.x
  */
 @Entity
-@Table(name = "db_student")
 interface Student {
 
     @Id
@@ -24,17 +23,17 @@ interface Student {
     @Key
     val lastName: String
 
-    val collegeId: Long?
+    val age: Int?
 
-    val gender: String
+    val gender: Gender
+
+    val createTime: LocalDateTime?
 
     /**
      * 简单计算属性，获取全名
      */
     @Formula(dependencies = ["firstName", "lastName"])
     val fullName: String get() = "$firstName$lastName"
-
-    val birthday: LocalDateTime?
 
     @LogicalDeleted("1")
     @Column(name = "is_delete")

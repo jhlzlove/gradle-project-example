@@ -1,0 +1,11 @@
+export org.jimmer.domain.Person
+
+import org.jimmer.domain.Items
+
+
+
+input PersonInput {
+    id
+
+    products: List<Items>
+}

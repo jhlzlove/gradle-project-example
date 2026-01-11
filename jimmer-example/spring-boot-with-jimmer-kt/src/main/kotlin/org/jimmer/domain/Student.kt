@@ -2,7 +2,6 @@ package org.jimmer.domain;
 
 import org.babyfish.jimmer.Formula
 import org.babyfish.jimmer.sql.*
-import java.time.LocalDateTime
 
 /**
  * 学生信息
@@ -11,8 +10,8 @@ import java.time.LocalDateTime
  * @version x.x.x
  */
 @Entity
-@Table(name = "db_student")
-interface Student {
+// @KeyUniqueConstraint
+interface Student : CreateBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +23,7 @@ interface Student {
     @Key
     val lastName: String
 
-    @IdView
-    val collegeId: Long?
+    val age: Int?
 
     val gender: Gender
 
@@ -35,16 +33,14 @@ interface Student {
     @Formula(dependencies = ["firstName", "lastName"])
     val fullName: String get() = "$firstName$lastName"
 
-    val birthday: LocalDateTime?
-
     @LogicalDeleted("1")
     @Column(name = "is_delete")
     val delete: Int
 
     @ManyToMany
     @JoinTable(
-        name = "db_stu_course",
-        joinColumnName = "stu_id",
+        name = "student_score",
+        joinColumnName = "student_id",
         inverseJoinColumnName = "course_id",
         // 若中间表也有逻辑删除字段，则修改这里
         // logicalDeletedFilter = JoinTable.LogicalDeletedFilter(columnName = "is_delete", type = Int::class, value = "1", initializedValue = "0"),
@@ -52,7 +48,4 @@ interface Student {
         // deletedWhenEndpointIsLogicallyDeleted = true
     )
     val courses: List<Course>
-
-    @ManyToOne
-    val college: College?
 }

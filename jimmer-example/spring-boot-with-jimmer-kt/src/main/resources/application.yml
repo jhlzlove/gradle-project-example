@@ -1,13 +1,19 @@
 server:
-  port: 7788
+  port: 10001
 
-# pg
+# 数据源
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: postgres
-    url: jdbc:postgresql://localhost:5432/db_jimmer
+    ds1:
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: postgres
+      url: jdbc:postgresql://localhost:5432/db_jimmer?currentSchema=school
+    ds2:
+      driver-class-name: org.postgresql.Driver
+      username: postgres
+      password: postgres
+      url: jdbc:postgresql://localhost:5432/db_test
 
 # Jimmer 配置
 jimmer:
@@ -16,8 +22,9 @@ jimmer:
   # 显示 SQL 语句并自动美化
   show-sql: true
   pretty-sql: true
+  inline-sql-variables: true
   # 严格检查实体与数据库的映射关系，例如非空等，若映射不对直接报错
-  database-validation-mode: error
+  database-validation-mode: warning
   # 数据库方言
   dialect: org.babyfish.jimmer.sql.dialect.PostgresDialect
   # 客户端配置
@@ -28,7 +35,7 @@ jimmer:
       properties:
         info:
           title: Spring Boot 3 with Jimmer Demo
-          description: 测试 测试一下
-          version: 1.0
+          description: Kotlin + Jimmer + Spring Boot 小案例
+          version: 0.1
     ts:
       path: /ts.zip

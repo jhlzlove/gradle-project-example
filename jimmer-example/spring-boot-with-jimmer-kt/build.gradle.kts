@@ -10,22 +10,14 @@ plugins {
 group = "org.jimmer"
 version = "1.0-SNAPSHOT"
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(libs.jimmer.spring.boot)
     ksp(libs.jimmer.ksp)
     runtimeOnly(libs.postgresql)
-    implementation(libs.bundles.spring.boot)
-    implementation(libs.bundles.kotlin.libs)
+    implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.data.redis)
+    implementation(libs.jimmer.spring.boot)
+    implementation(libs.kotlin.reflect)
     testImplementation(libs.spring.boot.starter.test)
 }
 

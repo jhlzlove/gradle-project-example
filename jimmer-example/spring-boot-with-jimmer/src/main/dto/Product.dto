@@ -1,0 +1,7 @@
+export org.jimmer.domain.Product
+
+input ProductInput {
+    id
+
+    productNum: Long
+}

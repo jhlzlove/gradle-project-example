@@ -9,7 +9,6 @@ import org.babyfish.jimmer.sql.*
  * @version x.x.x
  */
 @Entity
-@Table(name = "db_course")
 interface Course {
 
     @Id
@@ -22,6 +21,9 @@ interface Course {
     @Key
     val courseName: String
 
+    /**
+     * code 只是用来演示修改
+     */
     val courseCode: String
 
     /**

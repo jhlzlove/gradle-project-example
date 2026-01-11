@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * @author jhlz
  * @version 0.0.1
@@ -13,8 +15,19 @@ public class JDKTest {
      * example:
      **/
     @Test
-    public void _111_Test() {
+    public void switch_test() {
+        Object obj = "Hello";
 
+        var s = switchMethod(obj);
+        assertEquals("str Hello", s);
+    }
+
+    private String switchMethod(Object obj) {
+        return switch (obj) {
+            case Integer _ -> "int " + obj;
+            case String _ -> "str " + obj;
+            default -> "unknow type";
+        };
     }
 
     /**

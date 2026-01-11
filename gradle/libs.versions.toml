@@ -1,23 +1,34 @@
 [versions]
-jimmer = "0.9.60"
+jimmer = "0.9.119"
 # spring boot
-sb = "3.4.3"
+sb4 = "4.0.1"
+sb = "3.5.9"
 sbm = "1.1.7"
 # kotlin
-kotlin = "2.1.10"
-ksp = "2.1.10-1.0.31"
+#kotlin = "2.2.21"
+#ksp = "2.2.21-2.0.4"
+kotlin = "2.3.0"
+ksp = "2.3.4"
 
 # pg
-postgresql = "42.7.5"
+postgresql = "42.7.8"
 
-logback = "1.5.17"
-lombok = "1.18.36"
-quarkus = "3.15.2"
-jackson = "2.18.3"
+logback = "1.5.21"
+lombok = "1.18.42"
+quarkus = "3.30.2"
+jackson = "2.20.1"
 
 jmh = "1.37"
 
 [libraries]
+####################################### sb4 #######################################
+sb4-web = {module = "org.springframework.boot:spring-boot-starter-webmvc", version.ref = "sb4"}
+sb4-restclient = {module = "org.springframework.boot:spring-boot-starter-restclient", version.ref="sb4"}
+
+sb4-web-test = {module = "org.springframework.boot:spring-boot-starter-webmvc-test", version.ref = "sb4"}
+sb4-restclient-test = {module = "org.springframework.boot:spring-boot-starter-restclient-test", version.ref="sb4"}
+
+
 ####################################### jimmer #######################################
 # Jimmer sql for kotlin
 jimmer-sql-kotlin = { module = "org.babyfish.jimmer:jimmer-sql-kotlin", version.ref = "jimmer" }
@@ -31,7 +42,7 @@ jimmer-spring-boot = { module = "org.babyfish.jimmer:jimmer-spring-boot-starter"
 
 ####################################### kotlin #######################################
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
-kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+#kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 
 ####################################### spring boot #######################################
@@ -41,7 +52,7 @@ spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boo
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "sb" }
 
 ####################################### quarkus #######################################
-quarkus-platform = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkus"}
+quarkus-platform = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkus" }
 quarkus-rest = { module = "io.quarkus:quarkus-rest", version.ref = "quarkus" }
 quarkus-rest-jackson = { module = "io.quarkus:quarkus-rest-jackson", version.ref = "quarkus" }
 quarkus-agroal = { module = "io.quarkus:quarkus-agroal", version.ref = "quarkus" }
@@ -80,61 +91,6 @@ jmh-generator-annprocess = { module = "org.openjdk.jmh:jmh-generator-annprocess"
 
 [bundles]
 
-kotlin-libs =[
-    "kotlin-reflect",
-    "kotlin-stdlib-jdk8",
-]
-spring-boot = [
-    "spring-boot",
-    "spring-boot-starter-web",
-    "spring-boot-starter-data-redis",
-]
-
-micronaut-ksp = [
-    "micronaut-http-validation",
-    "micronaut-serde-processor",
-]
-micronaut = [
-    "micronaut-kotlin-runtime",
-    "micronaut-serde-jackson",
-    "kotlin-reflect",
-    "kotlin-stdlib-jdk8",
-]
-micronaut-compile = [
-    "micronaut-http-client",
-]
-micronaut-runtime = [
-    "logback-classic",
-    "jackson-module-kotlin",
-]
-
-quarkus = [
-    "quarkus-rest",
-    "quarkus-rest-jackson",
-    "quarkus-agroal",
-    "quarkus-narayana-jta",
-    "quarkus-jdbc-postgresql",
-    "quarkus-arc",
-    "quarkus-kotlin",
-    "kotlin-stdlib-jdk8",
-]
-quarkus-test = [
-    "quarkus-junit5",
-    "rest-assured"
-]
-
-jmh = [
-    "jmh-core",
-    "jmh-generator-annprocess",
-]
-
-jackson = [
-    "jackson-core",
-    "jackson-annotations",
-    "jackson-databind",
-    "jackson-datatype-jsr310",
-]
-
 [plugins]
 ####################################### kotlin #######################################
 kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
@@ -150,6 +106,6 @@ sbm = { id = "io.spring.dependency-management", version.ref = "sbm" }
 quarkus = { id = "io.quarkus" }
 
 ####################################### micronaut #######################################
-shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
-micronaut-application = { id = "io.micronaut.application", version = "4.4.4" }
-micronaut-aot = { id = "io.micronaut.aot", version = "4.4.4" }
+shadow = { id = "com.gradleup.shadow", version = "8.3.9" }
+micronaut-application = { id = "io.micronaut.application", version = "4.6.1" }
+micronaut-aot = { id = "io.micronaut.aot", version = "4.6.1" }

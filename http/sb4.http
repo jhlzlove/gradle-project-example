@@ -1,0 +1,8 @@
+### hello
+GET {{base-url}}/v1/api/hello
+
+### get user
+GET {{base-url}}/v2/api/user/2
+
+### hitokoto
+GET {{base-url}}/v2/api/hitokoto

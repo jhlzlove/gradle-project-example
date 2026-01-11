@@ -1,0 +1,33 @@
+server:
+  port: 10001
+
+# 数据源
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/db_jimmer?currentSchema=store
+
+# Jimmer 配置
+jimmer:
+  # 显示 SQL 语句并自动美化
+  show-sql: true
+  pretty-sql: true
+  inline-sql-variables: true
+  # 严格检查实体与数据库的映射关系，例如非空等，若映射不对直接报错
+  database-validation-mode: warning
+  # 数据库方言
+  dialect: org.babyfish.jimmer.sql.dialect.PostgresDialect
+  # 客户端配置
+  client:
+    openapi:
+      path: /openapi.yml
+      ui-path: /openapi.html
+      properties:
+        info:
+          title: Spring Boot 3 with Jimmer Demo
+          description: Java + Jimmer + Spring Boot 小案例
+          version: 0.1
+    ts:
+      path: /ts.zip
